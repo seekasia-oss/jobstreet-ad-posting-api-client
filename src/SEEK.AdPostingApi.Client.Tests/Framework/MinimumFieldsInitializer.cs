@@ -83,7 +83,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
 
         private string GetDefaultAdvertiserId()
         {
-            return "1";
+            return "1001000001";
         }
 
         private string GetDefaultJobTitle()

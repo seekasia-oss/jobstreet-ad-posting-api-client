@@ -14,10 +14,10 @@ namespace SEEK.AdPostingApi.SampleConsumer
 {
     public class Program
     {
-        private const string AdvertiserId = "AdvertiserId";
+        private const string AdvertiserId = "1001000001";
         private const int BaseRetryIntervalSeconds = 2;
-        private const string ClientId = "client1"; //"ClientId";
-        private const string ClientSecret = "secret"; //"ClientSecret";
+        private const string ClientId = "client1"; //"ClientId"; //"client1";
+        private const string ClientSecret = "secret"; //"ClientSecret"; //"secret";
 
         private static readonly RetryPolicy TransientErrorRetryPolicy = Policy
             .Handle<RequestException>(ex => ex.StatusCode >= 500)
@@ -193,7 +193,7 @@ namespace SEEK.AdPostingApi.SampleConsumer
                     Email = "recruiter@email.com"
                 },
                 SubclassificationId = "AerospaceEngineering"*/
-                AdvertiserId = "1001000001",
+                AdvertiserId = AdvertiserId,
                 JobTitle = "Senior Front-end Developer",
                 EmploymentType = 1,
                 Salary = new SalaryModel
@@ -221,7 +221,7 @@ namespace SEEK.AdPostingApi.SampleConsumer
                 Skill = new string[] { "php", ".net", "java" },
                 BlindAd = false,
                 TemplateId = 12345,
-                CreationId = "20150914"
+                CreationId = "Sample Consumer " + Guid.NewGuid()
             };
         }
 

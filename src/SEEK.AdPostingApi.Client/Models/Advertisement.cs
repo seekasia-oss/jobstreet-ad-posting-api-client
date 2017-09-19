@@ -3,7 +3,7 @@ using SEEK.AdPostingApi.Client.Hal;
 
 namespace SEEK.AdPostingApi.Client.Models
 {
-    [MediaType("application/vnd.seek.advertisement+json;version=1")]
+    [MediaType("application/vnd.seekasia.advertisement+json;version=1")]
     public class Advertisement
     {
         #region CENTRALISED CODE START
@@ -95,6 +95,8 @@ namespace SEEK.AdPostingApi.Client.Models
 
         public int[] Benefits { get; set; }
         #endregion JOBSDB CODE END
+
+        public AdvertisementError[] Warnings { get; set; }
 
         /*
         public ThirdParties ThirdParties { get; set; }

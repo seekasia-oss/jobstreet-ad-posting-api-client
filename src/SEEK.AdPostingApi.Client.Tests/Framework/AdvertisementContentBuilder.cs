@@ -69,13 +69,13 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             {
                 if (PropertyExists(this.AdvertisementModel, "salary"))
                 {
-                    TryRemoveProperty(this.AdvertisementModel.salary, "salaryCurrencyCode");
+                    TryRemoveProperty(this.AdvertisementModel.salary, "currencyCode");
                 }
             }
             else
             {
                 this.EnsureSalaryPropertyExists();
-                this.AdvertisementModel.salary.salaryCurrencyCode = currencyCode;
+                this.AdvertisementModel.salary.currencyCode = currencyCode;
             }
             return this;
         }
@@ -83,7 +83,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         public AdvertisementContentBuilder WithSalaryDisplay(object display)
         {
             this.EnsureSalaryPropertyExists();
-            this.AdvertisementModel.salary.salaryDisplay = display;
+            this.AdvertisementModel.salary.display = display;
             return this;
         }
 
@@ -119,7 +119,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return this;
         }
 
-        public AdvertisementContentBuilder WithEducationLevel(params object[] educationLevel)
+        public AdvertisementContentBuilder WithEducationLevel(object educationLevel)
         {
             if (educationLevel == null)
             {
@@ -127,7 +127,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             }
             else
             {
-                this.AdvertisementModel.educationLevel = educationLevel?.Clone<object[]>();
+                this.AdvertisementModel.educationLevel = educationLevel; //?.Clone();
             }
             return this;
         }
@@ -158,7 +158,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return this;
         }
 
-        public AdvertisementContentBuilder WithSite(params object[] site)
+        public AdvertisementContentBuilder WithSite(object site)
         {
             if (site == null)
             {
@@ -166,7 +166,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             }
             else
             {
-                this.AdvertisementModel.site = site?.Clone<object[]>();
+                this.AdvertisementModel.site = site; //?.Clone();
             }
             return this;
         }
@@ -179,7 +179,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
 
         public AdvertisementContentBuilder WithStandOutBullet(params object[] standOutBullet)
         {
-            this.AdvertisementModel.standOutBullet = standOutBullet?.Clone<object[]>();
+            this.AdvertisementModel.standOutBullet = standOutBullet?.Clone();
             return this;
         }
 
@@ -207,7 +207,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return this;
         }
 
-        public AdvertisementContentBuilder WithFieldOfStudy(params object[] fieldOfStudy)
+        public AdvertisementContentBuilder WithFieldOfStudy(object fieldOfStudy)
         {
             if (fieldOfStudy == null)
             {
@@ -215,14 +215,14 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             }
             else
             {
-                this.AdvertisementModel.fieldOfStudy = fieldOfStudy?.Clone<object[]>();
+                this.AdvertisementModel.fieldOfStudy = fieldOfStudy; //?.Clone();
             }
             return this;
         }
 
-        public AdvertisementContentBuilder WithSkill(params object[] skill)
+        public AdvertisementContentBuilder WithSkill(object skill)
         {
-            this.AdvertisementModel.skill = skill?.Clone<object[]>();
+            this.AdvertisementModel.skill = skill; //?.Clone();
             return this;
         }
 
@@ -232,7 +232,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return this;
         }
 
-        public AdvertisementContentBuilder WithLanguage(params object[] language)
+        public AdvertisementContentBuilder WithLanguage(object language)
         {
             if (language == null)
             {
@@ -240,7 +240,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             }
             else
             {
-                this.AdvertisementModel.language = language?.Clone<object[]>();
+                this.AdvertisementModel.language = language; //?.Clone();
             }
             return this;
         }

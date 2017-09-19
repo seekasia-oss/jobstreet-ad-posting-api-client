@@ -36,7 +36,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private Models.Action _action;
         private string _applicationFormUrl;
         private string _applicationEmail;
-        private Brand _brand;
+        //private Brand _brand;
         #endregion CENTRALISED CODE END
 
         #region JOBSTREET CODE START
@@ -161,7 +161,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
 
         public AdvertisementModelBuilder<TAdvertisement> WithEducationLevel(int?[] educationLevel)
         {
-            this._educationLevel = educationLevel?.ToArray();
+            this._educationLevel = educationLevel; //?.ToArray();
             return this;
         }
 
@@ -179,7 +179,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
 
         public AdvertisementModelBuilder<TAdvertisement> WithSite(int?[] site)
         {
-            this._site = site.ToArray();
+            this._site = site; //.ToArray();
             return this;
         }
 
@@ -222,13 +222,13 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
 
         public AdvertisementModelBuilder<TAdvertisement> WithFieldOfStudy(int?[] fieldOfStudy)
         {
-            this._fieldOfStudy = fieldOfStudy.ToArray();
+            this._fieldOfStudy = fieldOfStudy; //.ToArray();
             return this;
         }
 
         public AdvertisementModelBuilder<TAdvertisement> WithSkill(string[] skill)
         {
-            this._skill = skill.ToArray();
+            this._skill = skill; //.ToArray();
             return this;
         }
 
@@ -275,13 +275,13 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 JobDescription = this._jobDescription,
                 JobSpecialization = this._jobSpecialization,
                 JobRole = this._jobRole,
-                EducationLevel = this._educationLevel.ToArray(),
-                FieldOfStudy = this._fieldOfStudy?.ToArray(),
+                EducationLevel = this._educationLevel,
+                FieldOfStudy = this._fieldOfStudy,
                 PositionLevel = this._positionLevel,
                 YearOfExperience = this._yearOfExperience,
-                Skill = this._skill?.ToArray(),
+                Skill = this._skill,
                 ApplicationEmail = this._applicationEmail,
-                Site = this._site?.ToArray(),
+                Site = this._site,
                 BlindAd = this._blindAd,
                 Language = this._language,
                 PostingDate = this._postingDate,

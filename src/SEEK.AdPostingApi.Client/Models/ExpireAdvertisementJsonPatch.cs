@@ -4,7 +4,7 @@ using SEEK.AdPostingApi.Client.Hal;
 
 namespace SEEK.AdPostingApi.Client.Models
 {
-    [MediaType("application/vnd.seek.advertisement-patch+json;version=1")]
+    [MediaType("application/vnd.seekasia.advertisement-patch+json;version=1")]
     public class ExpireAdvertisementJsonPatch : JsonPatchDocument<AdvertisementPatch>
     {
         public ExpireAdvertisementJsonPatch()

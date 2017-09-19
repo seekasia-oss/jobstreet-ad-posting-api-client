@@ -705,6 +705,7 @@ namespace SEEK.AdPostingApi.Client.Tests
                         },
                         Body = new AdvertisementContentBuilder(this.MinimumFieldsInitializer)
                             .WithRequestCreationId(CreationIdForAdWithMinimumRequiredData)
+                            .WithAdvertiserId("1001000001")
                             .Build()
                     }
                 )
@@ -724,7 +725,10 @@ namespace SEEK.AdPostingApi.Client.Tests
                         }
                     });
 
-            var requestModel = new AdvertisementModelBuilder(this.MinimumFieldsInitializer).WithRequestCreationId(CreationIdForAdWithMinimumRequiredData).Build();
+            var requestModel = new AdvertisementModelBuilder(this.MinimumFieldsInitializer)
+                            .WithRequestCreationId(CreationIdForAdWithMinimumRequiredData)
+                            .WithAdvertiserId("1001000001")
+                            .Build();
 
             UnauthorizedException actualException;
 
