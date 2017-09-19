@@ -132,8 +132,8 @@ namespace SEEK.AdPostingApi.Client.Tests
                             .WithLink("self", link)
                             .WithLink("view", viewRenderedAdvertisementLink)
                             .WithExpiryDate(expiryDate)
-                            .WithAgentId(null)
-                            .WithAdditionalProperties(AdditionalPropertyType.ResidentsOnly.ToString(), AdditionalPropertyType.Graduate.ToString())
+                            //.WithAgentId(null)
+                            //.WithAdditionalProperties(AdditionalPropertyType.ResidentsOnly.ToString(), AdditionalPropertyType.Graduate.ToString())
                             .Build()
                     });
         }
@@ -145,7 +145,7 @@ namespace SEEK.AdPostingApi.Client.Tests
                 .WithLinks(advertisementId)
                 .WithState(AdvertisementState.Expired)
                 .WithExpiryDate(expiryDate)
-                .WithAgentId(null)
+                //.WithAgentId(null)
                 .Build();
 
             result.ShouldBeEquivalentTo(expectedResult);
@@ -193,8 +193,8 @@ namespace SEEK.AdPostingApi.Client.Tests
                             .WithLink("self", link)
                             .WithLink("view", viewRenderedAdvertisementLink)
                             .WithExpiryDate(expiryDate)
-                            .WithAgentId(null)
-                            .WithAdditionalProperties(AdditionalPropertyType.ResidentsOnly.ToString(), AdditionalPropertyType.Graduate.ToString())
+                            //.WithAgentId(null)
+                            //.WithAdditionalProperties(AdditionalPropertyType.ResidentsOnly.ToString(), AdditionalPropertyType.Graduate.ToString())
                             .Build()
                     });
 
@@ -220,7 +220,7 @@ namespace SEEK.AdPostingApi.Client.Tests
                 .WithLinks(advertisementId)
                 .WithState(AdvertisementState.Expired)
                 .WithExpiryDate(expiryDate)
-                .WithAgentId(null)
+                //.WithAgentId(null)
                 .Build();
 
             result.ShouldBeEquivalentTo(expectedResult);

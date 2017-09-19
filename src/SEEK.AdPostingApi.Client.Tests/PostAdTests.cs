@@ -187,14 +187,19 @@ namespace SEEK.AdPostingApi.Client.Tests
                         },
                         Body = new AdvertisementContentBuilder(this.MinimumFieldsInitializer)
                             .WithRequestCreationId("20150914-134527-00109")
-                            .WithAdvertisementType(AdvertisementType.StandOut.ToString())
+                            //.WithAdvertisementType(AdvertisementType.StandOut.ToString())
                             .WithSalaryMinimum(-1.0)
-                            .WithStandoutBullets("new Uzi", "new Remington Model".PadRight(85, '!'), "new AK-47")
-                            .WithApplicationEmail("someone(at)some.domain")
-                            .WithApplicationFormUrl("htp://somecompany.domain/apply")
-                            .WithTemplateItems(
+                            .WithSalaryMaximum(3000)
+                            .WithSalaryCurrencyCode(1)
+                            .WithSalaryDisplay(null)
+                            .WithStandOutBullet("new Uzi", "new Remington Model".PadRight(65, '!'), "new AK-47")
+                            .WithApplicationEmail("klang(at)seekasia.domain")
+                            .WithApplicationFormUrl("htp://ww.seekasia.domain/apply")
+                            /*.WithTemplateItems(
                                 new KeyValuePair<object, object>("Template Line 1", "Template Value 1"),
-                                new KeyValuePair<object, object>("", "value2"))
+                                new KeyValuePair<object, object>("", "value2"))*/
+                            .WithJobTitle("Temporary part-time libraries North-West inter-library loan business unit administration assistant")
+                            .WithAction(Models.Action.post)
                             .Build()
                     }
                 )
@@ -216,7 +221,9 @@ namespace SEEK.AdPostingApi.Client.Tests
                                 new { field = "applicationFormUrl", code = "InvalidUrl" },
                                 new { field = "salary.minimum", code = "ValueOutOfRange" },
                                 new { field = "standout.bullets[1]", code = "MaxLengthExceeded" },
-                                new { field = "template.items[1].name", code = "Required" }
+                                new { field = "jobTitle", code = "MaxLengthExceeded" },
+                                new { field = "salary.display", code = "Required" }
+                                //new { field = "template.items[1].name", code = "Required" }
                             }
                         }
                     });
@@ -229,14 +236,18 @@ namespace SEEK.AdPostingApi.Client.Tests
                     async () =>
                         await client.CreateAdvertisementAsync(new AdvertisementModelBuilder(this.MinimumFieldsInitializer)
                             .WithRequestCreationId("20150914-134527-00109")
-                            .WithAdvertisementType(AdvertisementType.StandOut)
+                            //.WithAdvertisementType(AdvertisementType.StandOut)
                             .WithSalaryMinimum(-1)
-                            .WithStandoutBullets("new Uzi", "new Remington Model".PadRight(85, '!'), "new AK-47")
-                            .WithApplicationEmail("someone(at)some.domain")
-                            .WithApplicationFormUrl("htp://somecompany.domain/apply")
-                            .WithTemplateItems(
+                            .WithSalaryMaximum(3000)
+                            .WithSalaryCurrencyCode(1)
+                            .WithStandOutBullet("new Uzi", "new Remington Model".PadRight(65, '!'), "new AK-47")
+                            .WithApplicationEmail("klang(at)seekasia.domain")
+                            .WithApplicationFormUrl("htp://ww.seekasia.domain/apply")
+                            /*.WithTemplateItems(
                                 new TemplateItem { Name = "Template Line 1", Value = "Template Value 1" },
-                                new TemplateItem { Name = "", Value = "value2" })
+                                new TemplateItem { Name = "", Value = "value2" })*/
+                            .WithJobTitle("Temporary part-time libraries North-West inter-library loan business unit administration assistant")
+                            .WithAction(Models.Action.post)
                             .Build()));
             }
 
@@ -253,7 +264,9 @@ namespace SEEK.AdPostingApi.Client.Tests
                             new AdvertisementError { Field = "applicationFormUrl", Code = "InvalidUrl" },
                             new AdvertisementError { Field = "salary.minimum", Code = "ValueOutOfRange" },
                             new AdvertisementError { Field = "standout.bullets[1]", Code = "MaxLengthExceeded" },
-                            new AdvertisementError { Field = "template.items[1].name", Code = "Required" }
+                            new AdvertisementError { Field = "jobTitle", Code = "MaxLengthExceeded" },
+                            new AdvertisementError { Field = "salary.display", Code = "Required" }
+                            //new AdvertisementError { Field = "template.items[1].name", Code = "Required" }
                         }
                     });
 
@@ -356,7 +369,7 @@ namespace SEEK.AdPostingApi.Client.Tests
                         },
                         Body = new AdvertisementContentBuilder(this.MinimumFieldsInitializer)
                             .WithRequestCreationId("20150914-134527-00109")
-                            .WithAdvertisementDetails("Ad details with <a href='www.youtube.com'>a link</a> and incomplete <h2> element")
+                            //.WithAdvertisementDetails("Ad details with <a href='www.youtube.com'>a link</a> and incomplete <h2> element")
                             .Build()
                     }
                 )
@@ -387,7 +400,7 @@ namespace SEEK.AdPostingApi.Client.Tests
                     async () =>
                         await client.CreateAdvertisementAsync(new AdvertisementModelBuilder(this.MinimumFieldsInitializer)
                             .WithRequestCreationId("20150914-134527-00109")
-                            .WithAdvertisementDetails("Ad details with <a href='www.youtube.com'>a link</a> and incomplete <h2> element")
+                            //.WithAdvertisementDetails("Ad details with <a href='www.youtube.com'>a link</a> and incomplete <h2> element")
                             .Build()));
             }
 
@@ -404,7 +417,7 @@ namespace SEEK.AdPostingApi.Client.Tests
             exception.ShouldBeEquivalentToException(expectedException);
         }
 
-        [Fact]
+        /*[Fact]
         public async Task PostAdWithInvalidAdvertisementDetailsWithCleanseJobAdDetailsOption()
         {
             const string advertisementId = "75b2b1fc-9050-4f45-a632-ec6b7ac2bb4a";
@@ -433,8 +446,8 @@ namespace SEEK.AdPostingApi.Client.Tests
                         },
                         Body = new AdvertisementContentBuilder(this.MinimumFieldsInitializer)
                             .WithRequestCreationId(CreationIdForAdWithMinimumRequiredData)
-                            .WithAdvertisementDetails(adDetailsBeforeCleanse)
-                            .WithProcessingOptions(ProcessingOptionsType.CleanseAdvertisementDetails.ToString())
+                            //.WithAdvertisementDetails(adDetailsBeforeCleanse)
+                            //.WithProcessingOptions(ProcessingOptionsType.CleanseAdvertisementDetails.ToString())
                             .Build()
                     }
                 )
@@ -453,14 +466,14 @@ namespace SEEK.AdPostingApi.Client.Tests
                             .WithId(advertisementId)
                             .WithLink("self", link)
                             .WithLink("view", viewRenderedAdvertisementLink)
-                            .WithAdvertisementDetails(adDetailsAfterCleanse)
+                            //.WithAdvertisementDetails(adDetailsAfterCleanse)
                             .Build()
                     });
 
             var requestModel = new AdvertisementModelBuilder(this.MinimumFieldsInitializer)
                 .WithRequestCreationId(CreationIdForAdWithMinimumRequiredData)
-                .WithAdvertisementDetails(adDetailsBeforeCleanse)
-                .WithProcessingOptions(ProcessingOptionsType.CleanseAdvertisementDetails)
+                //.WithAdvertisementDetails(adDetailsBeforeCleanse)
+                //.WithProcessingOptions(ProcessingOptionsType.CleanseAdvertisementDetails)
                 .Build();
 
             AdvertisementResource result;
@@ -473,11 +486,11 @@ namespace SEEK.AdPostingApi.Client.Tests
             AdvertisementResource expectedResult = new AdvertisementResourceBuilder(this.MinimumFieldsInitializer)
                 .WithId(new Guid(advertisementId))
                 .WithLinks(advertisementId)
-                .WithAdvertisementDetails(adDetailsAfterCleanse)
+                //.WithAdvertisementDetails(adDetailsAfterCleanse)
                 .Build();
 
             result.ShouldBeEquivalentTo(expectedResult);
-        }
+        }*/
 
         [Fact]
         public async Task PostAdWithNoCreationId()
@@ -796,7 +809,7 @@ namespace SEEK.AdPostingApi.Client.Tests
                     }));
         }
 
-        [Fact]
+        /*[Fact]
         public async Task PostAdWithDuplicateTemplateCustomFieldNames()
         {
             OAuth2Token oAuth2Token = new OAuth2TokenBuilder().Build();
@@ -819,10 +832,10 @@ namespace SEEK.AdPostingApi.Client.Tests
                         },
                         Body = new AdvertisementContentBuilder(this.MinimumFieldsInitializer)
                             .WithRequestCreationId(CreationIdForAdWithDuplicateTemplateCustomFields)
-                            .WithTemplateItems(
-                                new KeyValuePair<object, object>("FieldNameA", "Template Value 1"),
-                                new KeyValuePair<object, object>("FieldNameB", "Template Value 2"),
-                                new KeyValuePair<object, object>("FieldNameA", "Template Value 3"))
+                            //.WithTemplateItems(
+                            //    new KeyValuePair<object, object>("FieldNameA", "Template Value 1"),
+                            //    new KeyValuePair<object, object>("FieldNameB", "Template Value 2"),
+                            //    new KeyValuePair<object, object>("FieldNameA", "Template Value 3"))
                             .Build()
                     }
                 )
@@ -853,10 +866,10 @@ namespace SEEK.AdPostingApi.Client.Tests
                     async () =>
                         await client.CreateAdvertisementAsync(new AdvertisementModelBuilder(this.MinimumFieldsInitializer)
                             .WithRequestCreationId(CreationIdForAdWithDuplicateTemplateCustomFields)
-                            .WithTemplateItems(
-                                new TemplateItem { Name = "FieldNameA", Value = "Template Value 1" },
-                                new TemplateItem { Name = "FieldNameB", Value = "Template Value 2" },
-                                new TemplateItem { Name = "FieldNameA", Value = "Template Value 3" })
+                            //.WithTemplateItems(
+                            //    new TemplateItem { Name = "FieldNameA", Value = "Template Value 1" },
+                            //    new TemplateItem { Name = "FieldNameB", Value = "Template Value 2" },
+                            //   new TemplateItem { Name = "FieldNameA", Value = "Template Value 3" })
                             .Build()));
             }
 
@@ -874,9 +887,9 @@ namespace SEEK.AdPostingApi.Client.Tests
                 });
 
             exception.ShouldBeEquivalentToException(expectedException);
-        }
+        }*/
 
-        [Fact]
+        /*[Fact]
         public async Task PostAdWithGranularLocation()
         {
             const string advertisementId = "75b2b1fc-9050-4f45-a632-ec6b7ac2bb4a";
@@ -945,7 +958,7 @@ namespace SEEK.AdPostingApi.Client.Tests
                 .Build();
 
             result.ShouldBeEquivalentTo(expectedResult);
-        }
+        }*/
 
         private AdPostingApiFixture Fixture { get; }
     }

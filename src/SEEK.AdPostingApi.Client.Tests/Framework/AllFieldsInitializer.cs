@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 using SEEK.AdPostingApi.Client.Models;
 
 namespace SEEK.AdPostingApi.Client.Tests.Framework
 {
     public class AllFieldsInitializer : IBuilderInitializer
     {
-        private readonly LocationType _locationType;
+        //private readonly LocationType _locationType;
         private readonly IBuilderInitializer _minimumFieldsInitializer = new MinimumFieldsInitializer();
 
-        public AllFieldsInitializer(LocationType locationType = LocationType.UseLocation)
+        public AllFieldsInitializer()
         {
-            this._locationType = locationType;
         }
 
         public void Initialize(AdvertisementContentBuilder builder)
@@ -19,43 +19,55 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             this._minimumFieldsInitializer.Initialize(builder);
 
             builder
-                .WithSearchJobTitle(this.GetDefaultSearchJobTitle())
-                .WithAgentId(this.GetDefaultAgentId())
-                .WithAdvertisementType(AdvertisementType.StandOut.ToString())
-                .WithSalaryDetails(this.GetDefaultSalaryDetails())
-                .WithContactName(this.GetDefaultContactName())
-                .WithContactEmail(this.GetDefaultContactEmail())
-                .WithContactPhone(this.GetDefaultContactPhone())
-                .WithVideoUrl(this.GetDefaultVideoUrl())
-                .WithVideoPosition(this.GetDefaultVideoPosition().ToString())
+                .WithTemplateId(GetDefaultTemplateId())
+                .WithSkill(GetDefaultSkill())
+                .WithApplicationEmail(GetDefaultApplicationEmail())
+                .WithBlindAd(GetDefaultBlindAd())
+                .WithRequestCreationId(GetDefaultCreationId())
+                .WithPostingDate(GetDefaultPostingDate())
+                .WithLanguage(GetDefaultLanguage())
+                .WithAction(GetDefaultAction())
+                .WithApplicationFormUrl(GetDefaultApplicationFormUrl())
+                .WithStandOutBullet(GetDefaultStandoutBullet());
+
+            /*builder
+                //.WithSearchJobTitle(this.GetDefaultSearchJobTitle())
+                //.WithAgentId(this.GetDefaultAgentId())
+                //.WithAdvertisementType(AdvertisementType.StandOut.ToString())
+                //.WithSalaryDetails(this.GetDefaultSalaryDetails())
+                //.WithContactName(this.GetDefaultContactName())
+                //.WithContactEmail(this.GetDefaultContactEmail())
+                //.WithContactPhone(this.GetDefaultContactPhone())
+                //.WithVideoUrl(this.GetDefaultVideoUrl())
+                //.WithVideoPosition(this.GetDefaultVideoPosition().ToString())
                 .WithApplicationEmail(this.GetDefaultApplicationEmail())
                 .WithApplicationFormUrl(this.GetDefaultApplicationFormUrl())
-                .WithEndApplicationUrl(this.GetDefaultEndApplicationUrl())
-                .WithScreenId(this.GetDefaultScreenId())
-                .WithJobReference(this.GetDefaultJobReference())
-                .WithAgentJobReference(this.GetDefaultAgentJobReference())
+                //.WithEndApplicationUrl(this.GetDefaultEndApplicationUrl())
+                //.WithScreenId(this.GetDefaultScreenId())
+                //.WithJobReference(this.GetDefaultJobReference())
+                //.WithAgentJobReference(this.GetDefaultAgentJobReference())
                 .WithTemplateId(this.GetDefaultTemplateId())
-                .WithTemplateItems(
+                /*.WithTemplateItems(
                     new KeyValuePair<object, object>(this.GetDefaultTemplateItemName(1),
                         this.GetDefaultTemplateItemValue(1)),
                     new KeyValuePair<object, object>(this.GetDefaultTemplateItemName(2),
-                        this.GetDefaultTemplateItemValue(2)))
-                .WithStandoutLogoId(this.GetDefaultLogoId())
-                .WithStandoutBullets(this.GetDefaultStandoutBullet(1), this.GetDefaultStandoutBullet(2),
-                    this.GetDefaultStandoutBullet(3))
-                .WithAdditionalProperties(this.GetDefaultAdditionalPropertiesAsObjects())
-                .WithRecruiterTeamName(this.GetDefaultRecruiterTeamName());
+                        this.GetDefaultTemplateItemValue(2)))*/
+            //.WithStandoutLogoId(this.GetDefaultLogoId())
+            //.WithStandOutBullet(this.GetDefaultStandoutBullet(1), this.GetDefaultStandoutBullet(2),
+            //    this.GetDefaultStandoutBullet(3))
+            //.WithAdditionalProperties(this.GetDefaultAdditionalPropertiesAsObjects())
+            //.WithRecruiterTeamName(this.GetDefaultRecruiterTeamName());*/
 
-            if (_locationType == LocationType.UseGranularLocation)
-            {
-                builder
-                    .WithLocationId(null)
-                    .WithLocationAreaId(null)
-                    .WithGranularLocationCountry(this.GetDefaultGranularLocationCountry())
-                    .WithGranularLocationState(this.GetDefaultGranularLocationState())
-                    .WithGranularLocationCity(this.GetDefaultGranularLocationCity())
-                    .WithGranularLocationPostCode(this.GetDefaultGranularLocationPostCode());
-            }
+            /* if (_locationType == LocationType.UseGranularLocation)
+             {
+                 builder
+                     //.WithLocationId(null)
+                     //.WithLocationAreaId(null)
+                     //.WithGranularLocationCountry(this.GetDefaultGranularLocationCountry())
+                     //.WithGranularLocationState(this.GetDefaultGranularLocationState())
+                     //.WithGranularLocationCity(this.GetDefaultGranularLocationCity())
+                     //.WithGranularLocationPostCode(this.GetDefaultGranularLocationPostCode());
+             }*/
         }
 
         public void Initialize<TAdvertisement>(AdvertisementModelBuilder<TAdvertisement> builder)
@@ -64,23 +76,35 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             this._minimumFieldsInitializer.Initialize(builder);
 
             builder
-                .WithSearchJobTitle(this.GetDefaultSearchJobTitle())
-                .WithAgentId(this.GetDefaultAgentId())
-                .WithAdvertisementType(AdvertisementType.StandOut)
-                .WithSalaryDetails(this.GetDefaultSalaryDetails())
-                .WithContactName(this.GetDefaultContactName())
-                .WithContactEmail(this.GetDefaultContactEmail())
-                .WithContactPhone(this.GetDefaultContactPhone())
-                .WithVideoUrl(this.GetDefaultVideoUrl())
-                .WithVideoPosition(this.GetDefaultVideoPosition())
+                .WithTemplateId(GetDefaultTemplateId())
+                .WithSkill(GetDefaultSkill())
+                .WithApplicationEmail(GetDefaultApplicationEmail())
+                .WithBlindAd(GetDefaultBlindAd())
+                .WithRequestCreationId(GetDefaultCreationId())
+                .WithPostingDate(GetDefaultPostingDate())
+                .WithLanguage(GetDefaultLanguage())
+                .WithAction(GetDefaultAction())
+                .WithApplicationFormUrl(GetDefaultApplicationFormUrl())
+                .WithStandOutBullet(GetDefaultStandoutBullet());
+
+            /*builder
+                //.WithSearchJobTitle(this.GetDefaultSearchJobTitle())
+                //.WithAgentId(this.GetDefaultAgentId())
+                //.WithAdvertisementType(AdvertisementType.StandOut)
+                //.WithSalaryDetails(this.GetDefaultSalaryDetails())
+                //.WithContactName(this.GetDefaultContactName())
+                //.WithContactEmail(this.GetDefaultContactEmail())
+                //.WithContactPhone(this.GetDefaultContactPhone())
+                //.WithVideoUrl(this.GetDefaultVideoUrl())
+                //.WithVideoPosition(this.GetDefaultVideoPosition())
                 .WithApplicationEmail(this.GetDefaultApplicationEmail())
                 .WithApplicationFormUrl(this.GetDefaultApplicationFormUrl())
-                .WithEndApplicationUrl(this.GetDefaultEndApplicationUrl())
-                .WithScreenId(this.GetDefaultScreenId())
-                .WithJobReference(this.GetDefaultJobReference())
-                .WithAgentJobReference(this.GetDefaultAgentJobReference())
+                //.WithEndApplicationUrl(this.GetDefaultEndApplicationUrl())
+                //.WithScreenId(this.GetDefaultScreenId())
+                //.WithJobReference(this.GetDefaultJobReference())
+                //.WithAgentJobReference(this.GetDefaultAgentJobReference())
                 .WithTemplateId(this.GetDefaultTemplateId())
-                .WithTemplateItems(
+                /*.WithTemplateItems(
                     new TemplateItem
                     {
                         Name = this.GetDefaultTemplateItemName(1),
@@ -90,25 +114,78 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                     {
                         Name = this.GetDefaultTemplateItemName(2),
                         Value = this.GetDefaultTemplateItemValue(2)
-                    })
-                .WithStandoutLogoId(this.GetDefaultLogoId())
-                .WithStandoutBullets(this.GetDefaultStandoutBullet(1), this.GetDefaultStandoutBullet(2),
-                    this.GetDefaultStandoutBullet(3))
-                .WithAdditionalProperties(this.GetDefaultAdditionalProperties())
-                .WithRecruiterTeamName(this.GetDefaultRecruiterTeamName());
+                    })*/
+            //.WithStandoutLogoId(this.GetDefaultLogoId())
+            //.WithStandOutBullet(this.GetDefaultStandoutBullet(1), this.GetDefaultStandoutBullet(2),
+            //    this.GetDefaultStandoutBullet(3))
+            //.WithAdditionalProperties(this.GetDefaultAdditionalProperties())
+            //.WithRecruiterTeamName(this.GetDefaultRecruiterTeamName());*/
 
-            if (_locationType == LocationType.UseGranularLocation)
+
+            /*if (_locationType == LocationType.UseGranularLocation)
             {
                 builder
-                    .WithLocationArea(null)
+                    //.WithLocationArea(null)
                     .WithGranularLocationCountry(this.GetDefaultGranularLocationCountry())
                     .WithGranularLocationState(this.GetDefaultGranularLocationState())
                     .WithGranularLocationCity(this.GetDefaultGranularLocationCity())
                     .WithGranularLocationPostCode(this.GetDefaultGranularLocationPostCode());
-            }
+            }*/
         }
 
-        private string GetDefaultSearchJobTitle()
+        private int GetDefaultTemplateId()
+        {
+            return 12345;
+        }
+
+        private string[] GetDefaultSkill()
+        {
+            return new string[] { "php", "java" };
+        }
+
+        private string GetDefaultApplicationEmail()
+        {
+            return "default@seekasia.com";
+        }
+
+        private string GetDefaultApplicationFormUrl()
+        {
+            return "http://seekasia.com/";
+        }
+
+        private bool GetDefaultBlindAd()
+        {
+            return false;
+        }
+
+        private string GetDefaultCreationId()
+        {
+            return "20150914";
+        }
+
+        private DateTime GetDefaultPostingDate()
+        {
+            return new DateTime(2017, 9, 30);
+        }
+
+        private int?[] GetDefaultLanguage()
+        {
+            return new int?[] { 1, 2 };
+        }
+
+        private Models.Action GetDefaultAction()
+        {
+            return Models.Action.post;
+        }
+
+        private string[] GetDefaultStandoutBullet()
+        {
+            return new string[] { "Good", "Best", "Awesome" };
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------ */
+
+        /*private string GetDefaultSearchJobTitle()
         {
             return "Senior Developer, .NET Core, Scala, Team Leader, Agile Methodologies";
         }
@@ -116,14 +193,14 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private string GetDefaultAgentId()
         {
             return "385";
-        }
+        }*/
 
-        private string GetDefaultSalaryDetails()
+        /*private string GetDefaultSalaryDetails()
         {
             return "We will pay you";
-        }
+        }*/
 
-        private string GetDefaultContactName()
+        /*private string GetDefaultContactName()
         {
             return "Contact name";
         }
@@ -146,9 +223,9 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private VideoPosition GetDefaultVideoPosition()
         {
             return VideoPosition.Above;
-        }
+        }*/
 
-        private string GetDefaultApplicationEmail()
+        /*private string GetDefaultApplicationEmail()
         {
             return "asdf@asdf.com";
         }
@@ -156,9 +233,9 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private string GetDefaultApplicationFormUrl()
         {
             return "http://apply.com/";
-        }
+        }*/
 
-        private string GetDefaultEndApplicationUrl()
+        /*private string GetDefaultEndApplicationUrl()
         {
             return "http://endform.com/";
         }
@@ -176,14 +253,14 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private string GetDefaultAgentJobReference()
         {
             return "AGENTJOB1234";
-        }
+        }*/
 
-        private int GetDefaultTemplateId()
+        /*private int GetDefaultTemplateId()
         {
             return 1;
-        }
+        }*/
 
-        private string GetDefaultTemplateItemName(int itemNumber)
+        /*private string GetDefaultTemplateItemName(int itemNumber)
         {
             return $"Template Line {itemNumber}";
         }
@@ -196,9 +273,9 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private int GetDefaultLogoId()
         {
             return 1;
-        }
+        }*/
 
-        private string GetDefaultStandoutBullet(int itemNumber)
+        /*private string GetDefaultStandoutBullet(int itemNumber)
         {
             switch (itemNumber)
             {
@@ -214,9 +291,9 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 default:
                     return $"Standout bullet {itemNumber}";
             }
-        }
+        }*/
 
-        private AdditionalPropertyType[] GetDefaultAdditionalProperties()
+        /*private AdditionalPropertyType[] GetDefaultAdditionalProperties()
         {
             return new[] { AdditionalPropertyType.ResidentsOnly, AdditionalPropertyType.Graduate };
         }
@@ -249,6 +326,6 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private string GetDefaultRecruiterTeamName()
         {
             return "Recruiter Team Name";
-        }
+        }*/
     }
 }

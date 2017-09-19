@@ -31,6 +31,8 @@ namespace SEEK.AdPostingApi.Client.Resources
 
         public AdvertisementState State { get; set; }
 
+        public AdvertisementError[] Warnings { get; set; }
+
         [JsonIgnore]
         public Uri Uri => this.Links.GenerateLink("self");
 

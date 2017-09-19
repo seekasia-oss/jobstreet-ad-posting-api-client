@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using SEEK.AdPostingApi.Client.Models;
 
 namespace SEEK.AdPostingApi.Client.Tests.Framework
@@ -13,7 +14,40 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
 
     public class AdvertisementModelBuilder<TAdvertisement> where TAdvertisement : Advertisement, new()
     {
-        private string _agentId;
+        #region CENTRALISED CODE START
+        private string _advertiserId;
+        private string _jobTitle;
+        private int? _employmentType;
+        private Models.JobStreet.LocationModel[] _location;
+        private decimal _salaryMinimum;
+        private decimal _salaryMaximum;
+        private int? _salaryCurrencyCode;
+        private bool _salaryDisplay;
+        private string _jobDescription;
+        private int? _jobSpecialization;
+        private int? _jobRole;
+        private int?[] _educationLevel;
+        private int? _positionLevel;
+        private int? _yearOfExperience;
+        private int?[] _site;
+        private DateTime _postingDate;
+        private string[] _standOutBullet;
+        private string _creationId;
+        private Models.Action _action;
+        private string _applicationFormUrl;
+        private string _applicationEmail;
+        private Brand _brand;
+        #endregion CENTRALISED CODE END
+
+        #region JOBSTREET CODE START
+        private int?[] _fieldOfStudy;
+        private string[] _skill;
+        private bool _blindAd;
+        private int?[] _language;
+        private int? _templateId;
+        #endregion JOBSTREET CODE END
+
+        /*private string _agentId;
         private string _advertiserId;
         private string _creationId;
         private string _jobTitle;
@@ -52,354 +86,210 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private ProcessingOptionsType[] _processingOptionsTypes;
         private string _recruiterEmail;
         private string _recruiterFullName;
-        private string _recruiterTeamName;
+        private string _recruiterTeamName;*/
 
         protected AdvertisementModelBuilder(IBuilderInitializer initializer = null)
         {
             initializer?.Initialize(this);
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithAgentId(string agentId)
-        {
-            this._agentId = agentId;
-
-            return this;
-        }
-
         public AdvertisementModelBuilder<TAdvertisement> WithAdvertiserId(string advertiserId)
         {
             this._advertiserId = advertiserId;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithRequestCreationId(string creationId)
-        {
-            this._creationId = creationId;
-
             return this;
         }
 
         public AdvertisementModelBuilder<TAdvertisement> WithJobTitle(string jobTitle)
         {
             this._jobTitle = jobTitle;
-
             return this;
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithSearchJobTitle(string searchJobTitle)
+        public AdvertisementModelBuilder<TAdvertisement> WithEmploymentType(int employmentType)
         {
-            this._searchJobTitle = searchJobTitle;
-
+            this._employmentType = employmentType;
             return this;
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithJobSummary(string jobSummary)
+        public AdvertisementModelBuilder<TAdvertisement> WithLocation(params Models.JobStreet.LocationModel[] location)
         {
-            this._jobSummary = jobSummary;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithAdvertisementDetails(string advertisementDetails)
-        {
-            this._advertisementDetails = advertisementDetails;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithAdvertisementType(AdvertisementType advertisementType)
-        {
-            this._advertisementType = advertisementType;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithWorkType(WorkType workType)
-        {
-            this._workType = workType;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithLocationArea(string locationId, string areaId = null)
-        {
-            this._locationId = locationId;
-            this._areaId = areaId;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithGranularLocationCountry(string country)
-        {
-            this._granularLocationCountry = country;
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithGranularLocationState(string state)
-        {
-            this._granularLocationState = state;
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithGranularLocationCity(string city)
-        {
-            this._granularLocationCity = city;
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithGranularLocationPostCode(string postCode)
-        {
-            this._granularLocationPostCode = postCode;
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithSubclassificationId(string subclassificationId)
-        {
-            this._subclassificationId = subclassificationId;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithSalaryType(SalaryType salaryType)
-        {
-            this._salaryType = salaryType;
-
+            this._location = location.ToArray();        
             return this;
         }
 
         public AdvertisementModelBuilder<TAdvertisement> WithSalaryMinimum(decimal minimum)
         {
             this._salaryMinimum = minimum;
-
             return this;
         }
 
         public AdvertisementModelBuilder<TAdvertisement> WithSalaryMaximum(decimal maximum)
         {
             this._salaryMaximum = maximum;
+            return this;
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithSalaryCurrencyCode(int? currencyCode)
+        {
+            this._salaryCurrencyCode = currencyCode;
+            return this;
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithSalaryDisplay(bool display)
+        {
+            this._salaryDisplay = display;
+            return this;
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithJobDescription(string jobDescription)
+        {
+            this._jobDescription = jobDescription;
+            return this;
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithJobSpecialization(int? jobSpecialization)
+        {
+            this._jobSpecialization = jobSpecialization;
+            return this;
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithJobRole(int? jobRole)
+        {
+            this._jobRole = jobRole;
+            return this;
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithEducationLevel(int?[] educationLevel)
+        {
+            this._educationLevel = educationLevel?.ToArray();
+            return this;
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithPositionLevel(int? positionLevel)
+        {
+            this._positionLevel = positionLevel;
+            return this;
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithYearOfExperience(int? yearOfExperience)
+        {
+            this._yearOfExperience = yearOfExperience;
+            return this;
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithSite(int?[] site)
+        {
+            this._site = site.ToArray();
+            return this;
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithPostingDate(DateTime postingDate)
+        {
+            this._postingDate = postingDate;
 
             return this;
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithSalaryDetails(string details)
+        public AdvertisementModelBuilder<TAdvertisement> WithStandOutBullet(params string[] standOutBullet)
         {
-            this._salaryDetails = details;
-
+            this._standOutBullet = standOutBullet?.ToArray();
             return this;
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithContactName(string contactName)
+        public AdvertisementModelBuilder<TAdvertisement> WithRequestCreationId(string creationId)
         {
-            this._contactName = contactName;
-
+            this._creationId = creationId;
             return this;
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithContactPhone(string contactPhone)
+        public AdvertisementModelBuilder<TAdvertisement> WithAction(Models.Action action)
         {
-            this._contactPhone = contactPhone;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithContactEmail(string contactEmail)
-        {
-            this._contactEmail = contactEmail;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithVideoUrl(string url)
-        {
-            this._videoUrl = url;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithVideoPosition(VideoPosition? videoPosition)
-        {
-            this._videoPosition = videoPosition;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithApplicationEmail(string applicationEmail)
-        {
-            this._applicationEmail = applicationEmail;
-
+            this._action = action;            
             return this;
         }
 
         public AdvertisementModelBuilder<TAdvertisement> WithApplicationFormUrl(string applicationFormUrl)
         {
             this._applicationFormUrl = applicationFormUrl;
-
             return this;
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithEndApplicationUrl(string endApplicationUrl)
+        public AdvertisementModelBuilder<TAdvertisement> WithApplicationEmail(string applicationEmail)
         {
-            this._endApplicationUrl = endApplicationUrl;
-
+            this._applicationEmail = applicationEmail;
             return this;
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithScreenId(int? screenId)
+        public AdvertisementModelBuilder<TAdvertisement> WithFieldOfStudy(int?[] fieldOfStudy)
         {
-            this._screenId = screenId;
-
+            this._fieldOfStudy = fieldOfStudy.ToArray();
             return this;
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithJobReference(string jobReference)
+        public AdvertisementModelBuilder<TAdvertisement> WithSkill(string[] skill)
         {
-            this._jobReference = jobReference;
-
+            this._skill = skill.ToArray();
             return this;
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithAgentJobReference(string agentJobReference)
+        public AdvertisementModelBuilder<TAdvertisement> WithBlindAd(bool blindAd)
         {
-            this._agentJobReference = agentJobReference;
+            this._blindAd = blindAd;
+            return this;
+        }
 
+        public AdvertisementModelBuilder<TAdvertisement> WithLanguage(int?[] language)
+        {
+            this._language = language;
             return this;
         }
 
         public AdvertisementModelBuilder<TAdvertisement> WithTemplateId(int? id)
         {
             this._templateId = id;
-
             return this;
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithTemplateItems(params TemplateItem[] templateItems)
+        /*public AdvertisementModelBuilder<TAdvertisement> WithBrand(Brand brand)
         {
-            this._templateItems =
-                templateItems?.Select(itm => itm == null ? null : new TemplateItem { Name = itm.Name, Value = itm.Value })
-                    .ToArray();
-
+            this._brand = brand;
             return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithStandoutLogoId(int? logoId)
-        {
-            this._standoutLogoId = logoId;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithStandoutBullets(params string[] bullets)
-        {
-            this._standoutBullets = bullets?.ToArray();
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithAdditionalProperties(
-            params AdditionalPropertyType[] additionalPropertyTypes)
-        {
-            this._additionalPropertyTypes = additionalPropertyTypes.ToArray();
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithProcessingOptions(
-            params ProcessingOptionsType[] processingOptionsTypes)
-        {
-            this._processingOptionsTypes = processingOptionsTypes.ToArray();
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithRecruiterFullName(string recruiterFullName)
-        {
-            this._recruiterFullName = recruiterFullName;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithRecruiterEmail(string recruiterEmail)
-        {
-            this._recruiterEmail = recruiterEmail;
-
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithRecruiterTeamName(string recruiterTeamName)
-        {
-            this._recruiterTeamName = recruiterTeamName;
-
-            return this;
-        }
+        }*/
 
         public virtual TAdvertisement Build()
         {
             return new TAdvertisement
             {
-                ThirdParties = this._advertiserId == null && this._agentId == null
-                    ? null
-                    : new ThirdParties { AdvertiserId = this._advertiserId, AgentId = this._agentId },
-                CreationId = this._creationId,
-                AdvertisementType = this._advertisementType,
+                AdvertiserId = this._advertiserId,
+                TemplateId = this._templateId,
                 JobTitle = this._jobTitle,
-                SearchJobTitle = this._searchJobTitle,
-                Location = this._locationId == null && this._areaId == null
-                    ? null
-                    : new Location { Id = this._locationId, AreaId = this._areaId },
-                GranularLocation = this._granularLocationCountry == null
-                    ? null
-                    : new GranularLocation
-                    {
-                        Country = this._granularLocationCountry,
-                        State = this._granularLocationState,
-                        City = this._granularLocationCity,
-                        PostCode = this._granularLocationPostCode
-                    },
-                SubclassificationId = this._subclassificationId,
-                WorkType = this._workType,
-                JobSummary = this._jobSummary,
-                AdvertisementDetails = this._advertisementDetails,
-                ApplicationEmail = this._applicationEmail,
-                ApplicationFormUrl = this._applicationFormUrl,
-                EndApplicationUrl = this._endApplicationUrl,
-                ScreenId = this._screenId,
-                JobReference = this._jobReference,
-                AgentJobReference = this._agentJobReference,
-                Recruiter =
-                    this._recruiterFullName == null && this._recruiterEmail == null && this._recruiterTeamName == null
-                        ? null
-                        : new Recruiter
-                        {
-                            FullName = this._recruiterFullName,
-                            Email = this._recruiterEmail,
-                            TeamName = this._recruiterTeamName
-                        },
-                Salary = new Salary
+                EmploymentType = this._employmentType,
+                Salary = new Models.JobStreet.SalaryModel
                 {
-                    Type = this._salaryType,
                     Minimum = this._salaryMinimum,
                     Maximum = this._salaryMaximum,
-                    Details = this._salaryDetails
+                    CurrencyCode = this._salaryCurrencyCode,
+                    Display = this._salaryDisplay
                 },
-                Contact = this._contactName == null && this._contactPhone == null && this._contactEmail == null
-                    ? null
-                    : new Contact { Name = this._contactName, Phone = this._contactPhone, Email = this._contactEmail },
-                Template = this._templateId == null && this._templateItems == null
-                    ? null
-                    : new Template { Id = this._templateId, Items = this._templateItems?.ToArray() },
-                Video = this._videoUrl == null && this._videoPosition == null
-                    ? null
-                    : new Video { Url = this._videoUrl, Position = this._videoPosition ?? default(VideoPosition) },
-                Standout = this._standoutLogoId == null && this._standoutBullets == null
-                    ? null
-                    : new StandoutAdvertisement
-                    {
-                        LogoId = this._standoutLogoId,
-                        Bullets = this._standoutBullets?.ToArray()
-                    },
-                AdditionalProperties = this._additionalPropertyTypes?.ToArray(),
-                ProcessingOptions = this._processingOptionsTypes?.ToArray()
+                Location = this._location?.ToArray(),
+                JobDescription = this._jobDescription,
+                JobSpecialization = this._jobSpecialization,
+                JobRole = this._jobRole,
+                EducationLevel = this._educationLevel.ToArray(),
+                FieldOfStudy = this._fieldOfStudy?.ToArray(),
+                PositionLevel = this._positionLevel,
+                YearOfExperience = this._yearOfExperience,
+                Skill = this._skill?.ToArray(),
+                ApplicationEmail = this._applicationEmail,
+                Site = this._site?.ToArray(),
+                BlindAd = this._blindAd,
+                Language = this._language,
+                PostingDate = this._postingDate,
+                Action = this._action,
+                ApplicationFormUrl = this._applicationFormUrl,
+                StandOutBullet = this._standOutBullet?.ToArray(),
+                CreationId = this._creationId,
+                //Brand = this._brand
             };
         }
     }

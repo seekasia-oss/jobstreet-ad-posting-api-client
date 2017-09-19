@@ -6,6 +6,7 @@ using Polly;
 using Polly.Retry;
 using SEEK.AdPostingApi.Client;
 using SEEK.AdPostingApi.Client.Models;
+using SEEK.AdPostingApi.Client.Models.JobStreet;
 using SEEK.AdPostingApi.Client.Resources;
 using Environment = SEEK.AdPostingApi.Client.Environment;
 
@@ -15,8 +16,8 @@ namespace SEEK.AdPostingApi.SampleConsumer
     {
         private const string AdvertiserId = "AdvertiserId";
         private const int BaseRetryIntervalSeconds = 2;
-        private const string ClientId = "ClientId";
-        private const string ClientSecret = "ClientSecret";
+        private const string ClientId = "client1"; //"ClientId";
+        private const string ClientSecret = "secret"; //"ClientSecret";
 
         private static readonly RetryPolicy TransientErrorRetryPolicy = Policy
             .Handle<RequestException>(ex => ex.StatusCode >= 500)
@@ -161,9 +162,13 @@ namespace SEEK.AdPostingApi.SampleConsumer
 
         private static Advertisement GetExampleAdvertisementToCreate()
         {
+            LocationModel[] arrLocation = new LocationModel[2];
+            arrLocation[0] = new LocationModel { Id = 50300 };
+            arrLocation[1] = new LocationModel { Id = 70100 };
+            
             return new Advertisement
             {
-                CreationId = "Sample Consumer " + Guid.NewGuid(),
+                /*CreationId = "Sample Consumer " + Guid.NewGuid(),
                 ThirdParties = new ThirdParties { AdvertiserId = AdvertiserId },
                 JobTitle = "A Job for a Dude",
                 SearchJobTitle = "Dudes find job best when they search on this title",
@@ -187,7 +192,36 @@ namespace SEEK.AdPostingApi.SampleConsumer
                     FullName = "Recruiter full name",
                     Email = "recruiter@email.com"
                 },
-                SubclassificationId = "AerospaceEngineering"
+                SubclassificationId = "AerospaceEngineering"*/
+                AdvertiserId = "1001000001",
+                JobTitle = "Senior Front-end Developer",
+                EmploymentType = 1,
+                Salary = new SalaryModel
+                {
+                    Minimum = 1000,
+                    Maximum = 3000,
+                    CurrencyCode = 1,
+                    Display = true
+                },
+                Location = arrLocation,
+                JobDescription = "Responsibility You know have knowledge of Laravel and AngularJS. Understand requirement and delivery quality products.",
+                JobSpecialization = 191,
+                JobRole = 1333,
+                EducationLevel = new int?[] { 4, 5 },
+                FieldOfStudy = new int?[] { 8 },
+                PositionLevel = 16,
+                YearOfExperience = 2,
+                Site = new int?[] { 1, 2 },
+                Language = new int?[] { 1, 2, 3 },
+                PostingDate = new DateTime(2017, 9, 30),
+                StandOutBullet = new string[] { "Good", "Best", "Awesome" },
+                Action = Client.Models.Action.post,
+                ApplicationFormUrl = "www.seekasia.com",
+                ApplicationEmail = "klang@seekasia.com",
+                Skill = new string[] { "php", ".net", "java" },
+                BlindAd = false,
+                TemplateId = 12345,
+                CreationId = "20150914"
             };
         }
 

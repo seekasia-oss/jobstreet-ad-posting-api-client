@@ -40,7 +40,8 @@ namespace SEEK.AdPostingApi.Client.Tests
             var link = $"{AdvertisementLink}/{advertisementId}";
             var viewRenderedAdvertisementLink = $"{AdvertisementLink}/{advertisementId}/view";
 
-            var builderInitializer = new AllFieldsInitializer(locationType);
+            //var builderInitializer = new AllFieldsInitializer(locationType);
+            var builderInitializer = new AllFieldsInitializer();
 
             this.SetupPactForGettingExistingAdvertisement(givenStatement, link, oAuth2Token, builderInitializer, advertisementId, viewRenderedAdvertisementLink);
 
@@ -64,7 +65,8 @@ namespace SEEK.AdPostingApi.Client.Tests
             var link = $"{AdvertisementLink}/{advertisementId}";
             var viewRenderedAdvertisementLink = $"{AdvertisementLink}/{advertisementId}/view";
 
-            var builderInitializer = new AllFieldsInitializer(locationType);
+            //var builderInitializer = new AllFieldsInitializer(locationType);
+            var builderInitializer = new AllFieldsInitializer();
 
             this.Fixture.RegisterIndexPageInteractions(oAuth2Token);
 
@@ -117,8 +119,8 @@ namespace SEEK.AdPostingApi.Client.Tests
                         .WithState(AdvertisementState.Open.ToString())
                         .WithLink("self", link)
                         .WithLink("view", viewRenderedAdvertisementLink)
-                        .WithAgentId(null)
-                        .WithAdditionalProperties(AdditionalPropertyType.ResidentsOnly.ToString(), AdditionalPropertyType.Graduate.ToString())
+                        //.WithAgentId(null)
+                        //.WithAdditionalProperties(AdditionalPropertyType.ResidentsOnly.ToString(), AdditionalPropertyType.Graduate.ToString())
                         .Build()
                 });
         }
@@ -129,7 +131,7 @@ namespace SEEK.AdPostingApi.Client.Tests
                 .WithId(new Guid(advertisementId))
                 .WithLinks(advertisementId)
                 .WithProcessingStatus(ProcessingStatus.Completed)
-                .WithAgentId(null)
+                //.WithAgentId(null)
                 .Build();
 
             result.ShouldBeEquivalentTo(expectedResult);
@@ -175,8 +177,8 @@ namespace SEEK.AdPostingApi.Client.Tests
                         .WithWarnings(
                             new { field = "standout.logoId", code = "missing" },
                             new { field = "standout.bullets", code = "missing" })
-                        .WithAgentId(null)
-                        .WithAdditionalProperties(AdditionalPropertyType.ResidentsOnly.ToString(), AdditionalPropertyType.Graduate.ToString())
+                        //.WithAgentId(null)
+                        //.WithAdditionalProperties(AdditionalPropertyType.ResidentsOnly.ToString(), AdditionalPropertyType.Graduate.ToString())
                         .Build()
                 });
 
@@ -194,7 +196,7 @@ namespace SEEK.AdPostingApi.Client.Tests
                 .WithWarnings(
                     new AdvertisementError { Field = "standout.logoId", Code = "missing" },
                     new AdvertisementError { Field = "standout.bullets", Code = "missing" })
-                .WithAgentId(null)
+                //.WithAgentId(null)
                 .Build();
 
             result.ShouldBeEquivalentTo(expectedResult);

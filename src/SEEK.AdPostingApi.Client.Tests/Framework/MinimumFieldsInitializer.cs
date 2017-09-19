@@ -7,20 +7,39 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         public void Initialize(AdvertisementContentBuilder builder)
         {
             builder
-                .WithAdvertisementDetails(this.GetDefaultAdvertisementDetails())
                 .WithAdvertiserId(this.GetDefaultAdvertiserId())
-                .WithAdvertisementType(AdvertisementType.Classic.ToString())
-                .WithJobSummary(this.GetDefaultJobSummary())
+                .WithJobTitle(GetDefaultJobTitle())
+                .WithEmploymentType(GetDefaultEmploymentType())
+                .WithSalaryMinimum(GetDefaultSalaryMinimum())
+                .WithSalaryMaximum(GetDefaultSalaryMaximum())
+                .WithSalaryCurrencyCode(GetDefaultSalaryCurrencyCode())
+                .WithSalaryDisplay(GetDefaultSalaryDisplay())
+                .WithLocation(
+                    new Models.JobStreet.LocationModel{ Id = 50001, Area = "Test Area" })
+                .WithJobDescription(GetDefaultJobDescription())
+                .WithJobSpecialization(GetDefaultJobSpecialization())
+                .WithJobRole(GetDefaultJobRole())
+                .WithEducationLevel(GetDefaultEducationLevel())
+                .WithFieldOfStudy(GetDefaultFieldOfStudy())
+                .WithPositionLevel(GetDefaultPositionLevel())
+                .WithYearOfExperience(GetDefaultYearOfExperience())
+                .WithSite(GetDefaultSite())
+                .WithBrand(GetDefaultBrand());
+            /*builder
+                //.WithAdvertisementDetails(this.GetDefaultAdvertisementDetails())
+                .WithAdvertiserId(this.GetDefaultAdvertiserId())
+                //.WithAdvertisementType(AdvertisementType.Classic.ToString())
+                //.WithJobSummary(this.GetDefaultJobSummary())
                 .WithJobTitle(this.GetDefaultJobTitle())
-                .WithLocationId(this.GetDefaultLocationId())
-                .WithLocationAreaId(this.GetDefaultLocationAreaId())
+                //.WithLocationId(this.GetDefaultLocationId())
+                //.WithLocationAreaId(this.GetDefaultLocationAreaId())
                 .WithSalaryMinimum(this.GetDefaultSalaryMinimum())
                 .WithSalaryMaximum(this.GetDefaultSalaryMaximum())
-                .WithSalaryType(this.GetDefaultSalaryType().ToString())
-                .WithSubclassificationId(this.GetDefaultSubclassificationId())
-                .WithWorkType(this.GetDefaultWorkType().ToString())
-                .WithRecruiterFullName(this.GetDefaultRecruiterFullName())
-                .WithRecruiterEmail(this.GetDefaultRecruiterEmail());
+                //.WithSalaryType(this.GetDefaultSalaryType().ToString())
+                //.WithSubclassificationId(this.GetDefaultSubclassificationId())
+                //.WithWorkType(this.GetDefaultWorkType().ToString())
+                //.WithRecruiterFullName(this.GetDefaultRecruiterFullName())
+                //.WithRecruiterEmail(this.GetDefaultRecruiterEmail());*/
         }
 
         public void Initialize<TAdvertisement>(AdvertisementModelBuilder<TAdvertisement> builder)
@@ -28,23 +47,38 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         {
             builder
                 .WithAdvertiserId(this.GetDefaultAdvertiserId())
-                .WithAdvertisementType(AdvertisementType.Classic)
+                .WithJobTitle(GetDefaultJobTitle())
+                .WithEmploymentType(GetDefaultEmploymentType())
+                .WithSalaryMinimum(GetDefaultSalaryMinimum())
+                .WithSalaryMaximum(GetDefaultSalaryMaximum())
+                .WithSalaryCurrencyCode(GetDefaultSalaryCurrencyCode())
+                .WithSalaryDisplay(GetDefaultSalaryDisplay())
+                .WithLocation(
+                    new Models.JobStreet.LocationModel { Id = 50001, Area = "Test Area" })
+                .WithJobDescription(GetDefaultJobDescription())
+                .WithJobSpecialization(GetDefaultJobSpecialization())
+                .WithJobRole(GetDefaultJobRole())
+                .WithEducationLevel(GetDefaultEducationLevel())
+                .WithFieldOfStudy(GetDefaultFieldOfStudy())
+                .WithPositionLevel(GetDefaultPositionLevel())
+                .WithYearOfExperience(GetDefaultYearOfExperience())
+                .WithSite(GetDefaultSite());
+                //.WithBrand(GetDefaultBrand());
+
+            /*builder
+                .WithAdvertiserId(this.GetDefaultAdvertiserId())
+                //.WithAdvertisementType(AdvertisementType.Classic)
                 .WithJobTitle(this.GetDefaultJobTitle())
-                .WithLocationArea(this.GetDefaultLocationId(), this.GetDefaultLocationAreaId())
-                .WithSubclassificationId(this.GetDefaultSubclassificationId())
-                .WithWorkType(this.GetDefaultWorkType())
-                .WithSalaryType(this.GetDefaultSalaryType())
+                //.WithLocationArea(this.GetDefaultLocationId(), this.GetDefaultLocationAreaId())
+                //.WithSubclassificationId(this.GetDefaultSubclassificationId())
+                //.WithWorkType(this.GetDefaultWorkType())
+                //.WithSalaryType(this.GetDefaultSalaryType())
                 .WithSalaryMinimum(this.GetDefaultSalaryMinimum())
                 .WithSalaryMaximum(this.GetDefaultSalaryMaximum())
-                .WithJobSummary(this.GetDefaultJobSummary())
-                .WithAdvertisementDetails(this.GetDefaultAdvertisementDetails())
-                .WithRecruiterFullName(this.GetDefaultRecruiterFullName())
-                .WithRecruiterEmail(this.GetDefaultRecruiterEmail());
-        }
-
-        private string GetDefaultAdvertisementDetails()
-        {
-            return "Exciting, do I need to say more?";
+                //.WithJobSummary(this.GetDefaultJobSummary())
+                //.WithAdvertisementDetails(this.GetDefaultAdvertisementDetails())
+                //.WithRecruiterFullName(this.GetDefaultRecruiterFullName())
+                //.WithRecruiterEmail(this.GetDefaultRecruiterEmail());*/
         }
 
         private string GetDefaultAdvertiserId()
@@ -52,27 +86,114 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return "1";
         }
 
-        private string GetDefaultJobSummary()
-        {
-            return "Developer job";
-        }
-
         private string GetDefaultJobTitle()
         {
-            return "Exciting Senior Developer role in a great CBD location. Great $$$";
+            return "Front-end Developer";
         }
 
-        private string GetDefaultLocationAreaId()
+        private int GetDefaultEmploymentType()
         {
-            return "RussiaEasternEurope";
+            return 3;
         }
 
-        private string GetDefaultLocationId()
+        private decimal GetDefaultSalaryMinimum()
         {
-            return "EuropeRussia";
+            return (decimal)1000.0;
         }
 
         private decimal GetDefaultSalaryMaximum()
+        {
+            return (decimal)1599.0;
+        }
+
+        private int GetDefaultSalaryCurrencyCode()
+        {
+            return 1;
+        }
+
+        private bool GetDefaultSalaryDisplay()
+        {
+            return true;
+        }
+
+        private string GetDefaultJobDescription()
+        {
+            return "This is job description";
+        }
+
+        private int GetDefaultJobSpecialization()
+        {
+            return 191;
+        }
+
+        private int GetDefaultJobRole()
+        {
+            return 1333;
+        }
+
+        private int?[] GetDefaultEducationLevel()
+        {
+            return new int?[] { 4, 5};
+        }
+
+        private int?[] GetDefaultFieldOfStudy()
+        {
+            return new int?[] { 8 };
+        }
+
+        private int? GetDefaultPositionLevel()
+        {
+            return 16;
+        }
+
+        private int GetDefaultYearOfExperience()
+        {
+            return 2;
+        }
+
+        private int?[] GetDefaultSite()
+        {
+            return new int?[] { 1, 2 };
+        }
+
+        private Brand GetDefaultBrand()
+        {
+            return Brand.jobstreet;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------ */
+
+        /*private string GetDefaultAdvertisementDetails()
+        {
+            return "Exciting, do I need to say more?";
+        }*/
+
+        /*private string GetDefaultAdvertiserId()
+        {
+            return "1";
+        }*/
+
+        /*private string GetDefaultJobSummary()
+        {
+            return "Developer job";
+        }*/
+
+        /*private string GetDefaultJobTitle()
+        {
+            return "Exciting Senior Developer role in a great CBD location. Great $$$";
+        }*/
+
+        /*private string GetDefaultLocationAreaId()
+        {
+            return "RussiaEasternEurope";
+        }*/
+
+        /*private string GetDefaultLocationId()
+        {
+            return "EuropeRussia";
+        }*/
+
+        /*private decimal GetDefaultSalaryMaximum()
         {
             return 119999;
         }
@@ -80,24 +201,24 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private decimal GetDefaultSalaryMinimum()
         {
             return 100000;
-        }
+        }*/
 
-        private SalaryType GetDefaultSalaryType()
+        /*private SalaryType GetDefaultSalaryType()
         {
             return SalaryType.AnnualPackage;
-        }
+        }*/
 
-        private string GetDefaultSubclassificationId()
+        /*private string GetDefaultSubclassificationId()
         {
             return "AerospaceEngineering";
-        }
+        }*/
 
-        private WorkType GetDefaultWorkType()
+        /*private WorkType GetDefaultWorkType()
         {
             return WorkType.FullTime;
-        }
+        }*/
 
-        private string GetDefaultRecruiterFullName()
+        /*private string GetDefaultRecruiterFullName()
         {
             return "Recruiter Full Name";
         }
@@ -105,6 +226,6 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private string GetDefaultRecruiterEmail()
         {
             return "recruiter@email.com";
-        }
+        }*/
     }
 }

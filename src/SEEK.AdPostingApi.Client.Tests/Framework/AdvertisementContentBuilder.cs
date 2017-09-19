@@ -18,278 +18,34 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return ((IDictionary<string, object>)this.AdvertisementModel).Clone();
         }
 
-        public AdvertisementContentBuilder WithAdditionalProperties(params object[] additionalPropertyTypes)
-        {
-            this.AdvertisementModel.additionalProperties = additionalPropertyTypes?.Clone<object[]>();
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithProcessingOptions(params object[] processingOptionTypes)
-        {
-            this.AdvertisementModel.processingOptions = processingOptionTypes?.Clone<object[]>();
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithAdvertisementDetails(object advertisementDetails)
-        {
-            this.AdvertisementModel.advertisementDetails = advertisementDetails;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithAdvertisementType(object advertisementType)
-        {
-            this.AdvertisementModel.advertisementType = advertisementType;
-            return this;
-        }
-
         public AdvertisementContentBuilder WithAdvertiserId(object advertiserId)
         {
-            object agentId = PropertyExists(this.AdvertisementModel, "thirdParties") &&
-                             PropertyExists(this.AdvertisementModel.thirdParties, "agentId")
-                ? this.AdvertisementModel.thirdParties.agentId
-                : null;
-
-            this.CreateOrRemoveThirdParties(advertiserId, agentId);
-
+            this.AdvertisementModel.advertiserId = advertiserId;
             return this;
         }
-
-        public AdvertisementContentBuilder WithAgentId(object agentId)
-        {
-            object advertiserId = PropertyExists(this.AdvertisementModel, "thirdParties") &&
-                                  PropertyExists(this.AdvertisementModel.thirdParties, "advertiserId")
-                ? this.AdvertisementModel.thirdParties.advertiserId
-                : null;
-
-            this.CreateOrRemoveThirdParties(advertiserId, agentId);
-
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithAgentJobReference(object agentJobReference)
-        {
-            if (string.IsNullOrWhiteSpace((string)agentJobReference))
-            {
-                TryRemoveProperty(this.AdvertisementModel, "agentJobReference");
-            }
-            else
-            {
-                this.AdvertisementModel.agentJobReference = agentJobReference;
-            }
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithApplicationEmail(object applicationEmail)
-        {
-            this.AdvertisementModel.applicationEmail = applicationEmail;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithApplicationFormUrl(object applicationFormUrl)
-        {
-            this.AdvertisementModel.applicationFormUrl = applicationFormUrl;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithContactEmail(object contactEmail)
-        {
-            this.EnsureContactPropertyExists();
-            this.AdvertisementModel.contact.email = contactEmail;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithContactName(object contactName)
-        {
-            this.EnsureContactPropertyExists();
-            this.AdvertisementModel.contact.name = contactName;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithContactPhone(object contactPhone)
-        {
-            this.EnsureContactPropertyExists();
-            this.AdvertisementModel.contact.phone = contactPhone;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithEndApplicationUrl(object endApplicationUrl)
-        {
-            this.AdvertisementModel.endApplicationUrl = endApplicationUrl;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithJobReference(object jobReference)
-        {
-            this.AdvertisementModel.jobReference = jobReference;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithJobSummary(object jobSummary)
-        {
-            this.AdvertisementModel.jobSummary = jobSummary;
-            return this;
-        }
-
+        
         public AdvertisementContentBuilder WithJobTitle(object jobTitle)
         {
             this.AdvertisementModel.jobTitle = jobTitle;
             return this;
         }
 
-        public AdvertisementContentBuilder WithLocationAreaId(object areaId)
+        public AdvertisementContentBuilder WithEmploymentType(object employmentType)
         {
-            if (areaId == null)
+            if (employmentType == null)
             {
-                if (PropertyExists(this.AdvertisementModel, "location"))
-                {
-                    TryRemoveProperty(this.AdvertisementModel.location, "areaId");
-                }
+                TryRemoveProperty(this.AdvertisementModel, "employmentType");
             }
             else
             {
-                this.EnsureLocationPropertyExists();
-                this.AdvertisementModel.location.areaId = areaId;
+                this.AdvertisementModel.employmentType = employmentType;
             }
             return this;
         }
 
-        public AdvertisementContentBuilder WithLocationId(object locationId)
+        public AdvertisementContentBuilder WithLocation(params object[] location)
         {
-            if (locationId == null)
-            {
-                if (PropertyExists(this.AdvertisementModel, "location"))
-                {
-                    TryRemoveProperty(this.AdvertisementModel.location, "id");
-                }
-            }
-            else
-            {
-                this.EnsureLocationPropertyExists();
-                this.AdvertisementModel.location.id = locationId;
-            }
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithGranularLocationCountry(object country)
-        {
-            this.EnsureGranularLocationPropertyExists();
-
-            TryRemoveProperty(this.AdvertisementModel, "location");
-
-            this.AdvertisementModel.granularLocation.country = country;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithGranularLocationState(object state)
-        {
-            if (state == null)
-            {
-                if (PropertyExists(this.AdvertisementModel, "granularLocation"))
-                {
-                    TryRemoveProperty(this.AdvertisementModel.granularLocation, "state");
-                }
-            }
-            else
-            {
-                this.EnsureGranularLocationPropertyExists();
-
-                this.AdvertisementModel.granularLocation.state = state;
-            }
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithGranularLocationCity(object city)
-        {
-            if (city == null)
-            {
-                if (PropertyExists(this.AdvertisementModel, "granularLocation"))
-                {
-                    TryRemoveProperty(this.AdvertisementModel.granularLocation, "city");
-                }
-            }
-            else
-            {
-                this.EnsureGranularLocationPropertyExists();
-
-                this.AdvertisementModel.granularLocation.city = city;
-            }
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithGranularLocationPostCode(object postCode)
-        {
-            if (postCode == null)
-            {
-                if (PropertyExists(this.AdvertisementModel, "granularLocation"))
-                {
-                    TryRemoveProperty(this.AdvertisementModel.granularLocation, "postCode");
-                }
-            }
-            else
-            {
-                this.EnsureGranularLocationPropertyExists();
-
-                this.AdvertisementModel.granularLocation.postCode = postCode;
-            }
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithGranularLocationOptions(params object[] options)
-        {
-            if (options == null)
-            {
-                if (PropertyExists(this.AdvertisementModel, "granularLocation"))
-                {
-                    TryRemoveProperty(this.AdvertisementModel.granularLocation, "options");
-                }
-            }
-            else
-            {
-                this.EnsureGranularLocationPropertyExists();
-
-                this.AdvertisementModel.granularLocation.options = options?.Clone<object[]>();
-            }
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithRecruiterFullName(object recruiterFullName)
-        {
-            this.EnsureRecruiterPropertyExists();
-            this.AdvertisementModel.recruiter.fullName = recruiterFullName;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithRecruiterEmail(object recruiterEmail)
-        {
-            this.EnsureRecruiterPropertyExists();
-            this.AdvertisementModel.recruiter.email = recruiterEmail;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithRecruiterTeamName(object recruiterTeamName)
-        {
-            this.EnsureRecruiterPropertyExists();
-            this.AdvertisementModel.recruiter.teamName = recruiterTeamName;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithRequestCreationId(object creationId)
-        {
-            this.AdvertisementModel.creationId = creationId;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithSalaryDetails(object details)
-        {
-            this.EnsureSalaryPropertyExists();
-            this.AdvertisementModel.salary.details = details;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithSalaryMaximum(object maximum)
-        {
-            this.EnsureSalaryPropertyExists();
-            this.AdvertisementModel.salary.maximum = maximum;
+            this.AdvertisementModel.location = location?.Clone<object[]>();
             return this;
         }
 
@@ -300,146 +56,212 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return this;
         }
 
-        public AdvertisementContentBuilder WithSalaryType(object salaryType)
+        public AdvertisementContentBuilder WithSalaryMaximum(object maximum)
         {
             this.EnsureSalaryPropertyExists();
-            this.AdvertisementModel.salary.type = salaryType;
+            this.AdvertisementModel.salary.maximum = maximum;
             return this;
         }
 
-        public AdvertisementContentBuilder WithScreenId(object screenId)
+        public AdvertisementContentBuilder WithSalaryCurrencyCode(object currencyCode)
         {
-            this.AdvertisementModel.screenId = screenId;
+            if (currencyCode == null)
+            {
+                if (PropertyExists(this.AdvertisementModel, "salary"))
+                {
+                    TryRemoveProperty(this.AdvertisementModel.salary, "salaryCurrencyCode");
+                }
+            }
+            else
+            {
+                this.EnsureSalaryPropertyExists();
+                this.AdvertisementModel.salary.salaryCurrencyCode = currencyCode;
+            }
             return this;
         }
 
-        public AdvertisementContentBuilder WithSearchJobTitle(object searchJobTitle)
+        public AdvertisementContentBuilder WithSalaryDisplay(object display)
         {
-            this.AdvertisementModel.searchJobTitle = searchJobTitle;
+            this.EnsureSalaryPropertyExists();
+            this.AdvertisementModel.salary.salaryDisplay = display;
             return this;
         }
 
-        public AdvertisementContentBuilder WithStandoutBullets(params object[] bullets)
+        public AdvertisementContentBuilder WithJobDescription(object jobDescription)
         {
-            this.EnsureStandoutPropertyExists();
-
-            this.AdvertisementModel.standout.bullets = bullets?.Clone();
+            this.AdvertisementModel.jobDescription = jobDescription;
             return this;
         }
 
-        public AdvertisementContentBuilder WithStandoutLogoId(object logoId)
+        public AdvertisementContentBuilder WithJobSpecialization(object jobSpecialization)
         {
-            this.EnsureStandoutPropertyExists();
-
-            this.AdvertisementModel.standout.logoId = logoId;
+            if (jobSpecialization == null)
+            {
+                TryRemoveProperty(this.AdvertisementModel, "jobSpecialization");
+            }
+            else
+            {
+                this.AdvertisementModel.jobSpecialization = jobSpecialization;
+            }
             return this;
         }
 
-        public AdvertisementContentBuilder WithSubclassificationId(object subclassificationId)
+        public AdvertisementContentBuilder WithJobRole(object jobRole)
         {
-            this.AdvertisementModel.subclassificationId = subclassificationId;
+            if (jobRole == null)
+            {
+                TryRemoveProperty(this.AdvertisementModel, "jobRole");
+            }
+            else
+            {
+                this.AdvertisementModel.jobRole = jobRole;
+            }
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithEducationLevel(params object[] educationLevel)
+        {
+            if (educationLevel == null)
+            {
+                TryRemoveProperty(this.AdvertisementModel, "educationLevel");
+            }
+            else
+            {
+                this.AdvertisementModel.educationLevel = educationLevel?.Clone<object[]>();
+            }
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithPositionLevel(object positionLevel)
+        {
+            if (positionLevel == null)
+            {
+                TryRemoveProperty(this.AdvertisementModel, "positionLevel");
+            }
+            else
+            {
+                this.AdvertisementModel.positionLevel = positionLevel;
+            }
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithYearOfExperience(object yearOfExperience)
+        {
+            if (yearOfExperience == null)
+            {
+                TryRemoveProperty(this.AdvertisementModel, "yearOfExperience");
+            }
+            else
+            {
+                this.AdvertisementModel.yearOfExperience = yearOfExperience;
+            }
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithSite(params object[] site)
+        {
+            if (site == null)
+            {
+                TryRemoveProperty(this.AdvertisementModel, "site");
+            }
+            else
+            {
+                this.AdvertisementModel.site = site?.Clone<object[]>();
+            }
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithPostingDate(object postingDate)
+        {
+            this.AdvertisementModel.postingDate = postingDate;
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithStandOutBullet(params object[] standOutBullet)
+        {
+            this.AdvertisementModel.standOutBullet = standOutBullet?.Clone<object[]>();
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithRequestCreationId(object creationId)
+        {
+            this.AdvertisementModel.creationId = creationId;
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithAction(object action)
+        {
+            this.AdvertisementModel.action = action;
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithApplicationFormUrl(object applicationFormUrl)
+        {
+            this.AdvertisementModel.applicationFormUrl = applicationFormUrl;
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithApplicationEmail(object applicationEmail)
+        {
+            this.AdvertisementModel.applicationEmail = applicationEmail;
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithFieldOfStudy(params object[] fieldOfStudy)
+        {
+            if (fieldOfStudy == null)
+            {
+                TryRemoveProperty(this.AdvertisementModel, "fieldOfStudy");
+            }
+            else
+            {
+                this.AdvertisementModel.fieldOfStudy = fieldOfStudy?.Clone<object[]>();
+            }
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithSkill(params object[] skill)
+        {
+            this.AdvertisementModel.skill = skill?.Clone<object[]>();
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithBlindAd(object blindAd)
+        {
+            this.AdvertisementModel.blindAd = blindAd;
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithLanguage(params object[] language)
+        {
+            if (language == null)
+            {
+                TryRemoveProperty(this.AdvertisementModel, "language");
+            }
+            else
+            {
+                this.AdvertisementModel.language = language?.Clone<object[]>();
+            }
             return this;
         }
 
         public AdvertisementContentBuilder WithTemplateId(object id)
         {
-            this.EnsureTemplatePropertyExists();
-
-            this.AdvertisementModel.template.id = id;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithTemplateItems(params KeyValuePair<object, object>[] templateItems)
-        {
-            this.EnsureTemplatePropertyExists();
-
-            this.AdvertisementModel.template.items =
-                templateItems?.Select(t => new { name = t.Key, value = t.Value }).ToArray();
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithVideoPosition(object videoPosition)
-        {
-            this.EnsureVideoPropertyExists();
-            this.AdvertisementModel.video.position = videoPosition;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithVideoUrl(object url)
-        {
-            this.EnsureVideoPropertyExists();
-            this.AdvertisementModel.video.url = url;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithWorkType(object workType)
-        {
-            this.AdvertisementModel.workType = workType;
-            return this;
-        }
-
-        private void CreateOrRemoveThirdParties(object advertiserId, object agentId)
-        {
-            if (advertiserId == null && agentId == null)
+            if (id == null)
             {
-                TryRemoveProperty(this.AdvertisementModel, "thirdParties");
-                return;
-            }
-
-            if (!PropertyExists(this.AdvertisementModel, "thirdParties"))
-            {
-                this.AdvertisementModel.thirdParties = new ExpandoObject();
-            }
-
-            if (advertiserId == null)
-            {
-                TryRemoveProperty(this.AdvertisementModel.thirdParties, "advertiserId");
+                TryRemoveProperty(this.AdvertisementModel, "templateId");
             }
             else
             {
-                this.AdvertisementModel.thirdParties.advertiserId = advertiserId;
+                this.AdvertisementModel.templateId = id;
             }
-
-            if (agentId == null)
-            {
-                TryRemoveProperty(this.AdvertisementModel.thirdParties, "agentId");
-            }
-            else
-            {
-                this.AdvertisementModel.thirdParties.agentId = agentId;
-            }
+            return this;
         }
 
-        private void EnsureContactPropertyExists()
+        public AdvertisementContentBuilder WithBrand(object brand)
         {
-            if (!((IDictionary<string, object>)this.AdvertisementModel).ContainsKey("contact"))
-            {
-                this.AdvertisementModel.contact = new ExpandoObject();
-            }
-        }
-
-        private void EnsureLocationPropertyExists()
-        {
-            if (!((IDictionary<string, object>)this.AdvertisementModel).ContainsKey("location"))
-            {
-                this.AdvertisementModel.location = new ExpandoObject();
-            }
-        }
-
-        private void EnsureGranularLocationPropertyExists()
-        {
-            if (!((IDictionary<string, object>)this.AdvertisementModel).ContainsKey("granularLocation"))
-            {
-                this.AdvertisementModel.granularLocation = new ExpandoObject();
-            }
-        }
-
-        private void EnsureRecruiterPropertyExists()
-        {
-            if (!((IDictionary<string, object>)this.AdvertisementModel).ContainsKey("recruiter"))
-            {
-                this.AdvertisementModel.recruiter = new ExpandoObject();
-            }
+            this.AdvertisementModel.brand = brand;
+            return this;
         }
 
         private void EnsureSalaryPropertyExists()
@@ -447,30 +269,6 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             if (!((IDictionary<string, object>)this.AdvertisementModel).ContainsKey("salary"))
             {
                 this.AdvertisementModel.salary = new ExpandoObject();
-            }
-        }
-
-        private void EnsureStandoutPropertyExists()
-        {
-            if (!((IDictionary<string, object>)this.AdvertisementModel).ContainsKey("standout"))
-            {
-                this.AdvertisementModel.standout = new ExpandoObject();
-            }
-        }
-
-        private void EnsureTemplatePropertyExists()
-        {
-            if (!((IDictionary<string, object>)this.AdvertisementModel).ContainsKey("template"))
-            {
-                this.AdvertisementModel.template = new ExpandoObject();
-            }
-        }
-
-        private void EnsureVideoPropertyExists()
-        {
-            if (!((IDictionary<string, object>)this.AdvertisementModel).ContainsKey("video"))
-            {
-                this.AdvertisementModel.video = new ExpandoObject();
             }
         }
 
