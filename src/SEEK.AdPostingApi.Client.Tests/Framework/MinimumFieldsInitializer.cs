@@ -15,7 +15,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 .WithSalaryCurrencyCode(GetDefaultSalaryCurrencyCode())
                 .WithSalaryDisplay(GetDefaultSalaryDisplay())
                 .WithLocation(
-                    new Models.JobStreet.LocationModel{ Id = 50001, Area = "Test Area" })
+                    new Models.JobStreet.LocationModel { Id = 50001, Area = "Test Area" })
                 .WithJobDescription(GetDefaultJobDescription())
                 .WithJobSpecialization(GetDefaultJobSpecialization())
                 .WithJobRole(GetDefaultJobRole())
@@ -23,8 +23,8 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 .WithFieldOfStudy(GetDefaultFieldOfStudy())
                 .WithPositionLevel(GetDefaultPositionLevel())
                 .WithYearOfExperience(GetDefaultYearOfExperience())
-                .WithSite(GetDefaultSite())
-                .WithBrand(GetDefaultBrand());
+                .WithSite(GetDefaultSite());
+                
             /*builder
                 //.WithAdvertisementDetails(this.GetDefaultAdvertisementDetails())
                 .WithAdvertiserId(this.GetDefaultAdvertiserId())
@@ -63,7 +63,6 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 .WithPositionLevel(GetDefaultPositionLevel())
                 .WithYearOfExperience(GetDefaultYearOfExperience())
                 .WithSite(GetDefaultSite());
-                //.WithBrand(GetDefaultBrand());
 
             /*builder
                 .WithAdvertiserId(this.GetDefaultAdvertiserId())

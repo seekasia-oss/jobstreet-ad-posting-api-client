@@ -7,29 +7,8 @@ namespace SEEK.AdPostingApi.Client.Models
     public class Advertisement
     {
         #region CENTRALISED CODE START
-        //public Brand Brand { get; set; }
-        public Brand Brand
-        {
-            get
-            {
-                return getBrand();
-            }
-        }
-
-        private string _advertiserId;
-
-        public string AdvertiserId
-        {
-            get
-            {
-                return this._advertiserId;
-            }
-            set
-            {
-                this._advertiserId = value;
-                //this.Brand = getBrand();
-            }
-        }
+        
+        public ThirdParties ThirdParties { get; set; }
 
         public string JobTitle { get; set; }
 
@@ -64,9 +43,11 @@ namespace SEEK.AdPostingApi.Client.Models
         public string ApplicationFormUrl { get; set; }
 
         public string ApplicationEmail { get; set; }
+
         #endregion CENTRALISED CODE END
 
         #region JOBSTREET CODE START
+
         public int?[] FieldOfStudy { get; set; }
 
         public string[] Skill { get; set; }
@@ -76,9 +57,11 @@ namespace SEEK.AdPostingApi.Client.Models
         public int?[] Language { get; set; }
 
         public int? TemplateId { get; set; }
+
         #endregion JOBSTREET CODE END
 
         #region JOBSDB CODE START 
+
         public int JobIndustry { get; set; }
 
         public int Nationality { get; set; }
@@ -94,9 +77,8 @@ namespace SEEK.AdPostingApi.Client.Models
         public int LocalResidentOnly { get; set; }
 
         public int[] Benefits { get; set; }
-        #endregion JOBSDB CODE END
 
-        public AdvertisementError[] Warnings { get; set; }
+        #endregion JOBSDB CODE END
 
         /*
         public ThirdParties ThirdParties { get; set; }
@@ -152,20 +134,5 @@ namespace SEEK.AdPostingApi.Client.Models
         public Recruiter Recruiter { get; set; }
         */
 
-
-        public Brand getBrand()
-        {
-            int brandCode = int.Parse(this.AdvertiserId.ToString().Substring(0, 2));
-
-            switch (brandCode)
-            {
-                case 10:
-                    return Brand.jobstreet;
-                case 11:
-                    return Brand.jobsdb;
-                default:
-                    return 0; //default to 0 cause not a valid brand
-            }
-        }
     }
 }

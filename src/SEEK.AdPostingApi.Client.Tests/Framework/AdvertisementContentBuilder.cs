@@ -20,10 +20,26 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
 
         public AdvertisementContentBuilder WithAdvertiserId(object advertiserId)
         {
-            this.AdvertisementModel.advertiserId = advertiserId;
+            object agentId = PropertyExists(this.AdvertisementModel, "thirdParties") &&
+                             PropertyExists(this.AdvertisementModel.thirdParties, "agentId")
+                ? this.AdvertisementModel.thirdParties.agentId
+                : null;
+
+            this.CreateOrRemoveThirdParties(advertiserId, agentId);
             return this;
         }
-        
+
+        public AdvertisementContentBuilder WithAgentId(object agentId)
+        {
+            object advertiserId = PropertyExists(this.AdvertisementModel, "thirdParties") &&
+                                  PropertyExists(this.AdvertisementModel.thirdParties, "advertiserId")
+                ? this.AdvertisementModel.thirdParties.advertiserId
+                : null;
+
+            this.CreateOrRemoveThirdParties(advertiserId, agentId);
+            return this;
+        }
+
         public AdvertisementContentBuilder WithJobTitle(object jobTitle)
         {
             this.AdvertisementModel.jobTitle = jobTitle;
@@ -258,10 +274,36 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return this;
         }
 
-        public AdvertisementContentBuilder WithBrand(object brand)
+        private void CreateOrRemoveThirdParties(object advertiserId, object agentId)
         {
-            this.AdvertisementModel.brand = brand;
-            return this;
+            if (advertiserId == null && agentId == null)
+            {
+                TryRemoveProperty(this.AdvertisementModel, "thirdParties");
+                return;
+            }
+
+            if (!PropertyExists(this.AdvertisementModel, "thirdParties"))
+            {
+                this.AdvertisementModel.thirdParties = new ExpandoObject();
+            }
+
+            if (advertiserId == null)
+            {
+                TryRemoveProperty(this.AdvertisementModel.thirdParties, "advertiserId");
+            }
+            else
+            {
+                this.AdvertisementModel.thirdParties.advertiserId = advertiserId;
+            }
+
+            if (agentId == null)
+            {
+                TryRemoveProperty(this.AdvertisementModel.thirdParties, "agentId");
+            }
+            else
+            {
+                this.AdvertisementModel.thirdParties.agentId = agentId;
+            }
         }
 
         private void EnsureSalaryPropertyExists()

@@ -15,6 +15,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
     public class AdvertisementModelBuilder<TAdvertisement> where TAdvertisement : Advertisement, new()
     {
         #region CENTRALISED CODE START
+        private string _agentId;
         private string _advertiserId;
         private string _jobTitle;
         private int? _employmentType;
@@ -36,7 +37,6 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private Models.Action _action;
         private string _applicationFormUrl;
         private string _applicationEmail;
-        //private Brand _brand;
         #endregion CENTRALISED CODE END
 
         #region JOBSTREET CODE START
@@ -91,6 +91,12 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         protected AdvertisementModelBuilder(IBuilderInitializer initializer = null)
         {
             initializer?.Initialize(this);
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithAgentId(string agentId)
+        {
+            this._agentId = agentId;
+            return this;
         }
 
         public AdvertisementModelBuilder<TAdvertisement> WithAdvertiserId(string advertiserId)
@@ -250,17 +256,29 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return this;
         }
 
-        /*public AdvertisementModelBuilder<TAdvertisement> WithBrand(Brand brand)
-        {
-            this._brand = brand;
-            return this;
-        }*/
 
         public virtual TAdvertisement Build()
         {
+            /*ThirdParties _thirdParties = null;
+            if (this._advertiserId != null && this._agentId == null)
+            {
+                _thirdParties = new ThirdParties { AdvertiserId = this._advertiserId };
+            }
+            else if (this._advertiserId == null && this._agentId != null)
+            {
+                _thirdParties = new ThirdParties { AgentId = this._agentId };
+            }
+            else if (this._advertiserId != null && this._agentId != null)
+            {
+                _thirdParties = new ThirdParties { AdvertiserId = this._advertiserId, AgentId = this._agentId };
+            }*/
+
             return new TAdvertisement
             {
-                AdvertiserId = this._advertiserId,
+                //ThirdParties = _thirdParties,
+                ThirdParties = this._advertiserId == null && this._agentId == null
+                    ? null
+                    : new ThirdParties { AdvertiserId = this._advertiserId, AgentId = this._agentId },
                 TemplateId = this._templateId,
                 JobTitle = this._jobTitle,
                 EmploymentType = this._employmentType,
@@ -288,8 +306,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 Action = this._action,
                 ApplicationFormUrl = this._applicationFormUrl,
                 StandOutBullet = this._standOutBullet?.ToArray(),
-                CreationId = this._creationId,
-                //Brand = this._brand
+                CreationId = this._creationId
             };
         }
     }

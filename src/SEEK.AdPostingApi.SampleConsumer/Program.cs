@@ -193,7 +193,7 @@ namespace SEEK.AdPostingApi.SampleConsumer
                     Email = "recruiter@email.com"
                 },
                 SubclassificationId = "AerospaceEngineering"*/
-                AdvertiserId = AdvertiserId,
+                ThirdParties = new ThirdParties { AdvertiserId = AdvertiserId },
                 JobTitle = "Senior Front-end Developer",
                 EmploymentType = 1,
                 Salary = new SalaryModel
