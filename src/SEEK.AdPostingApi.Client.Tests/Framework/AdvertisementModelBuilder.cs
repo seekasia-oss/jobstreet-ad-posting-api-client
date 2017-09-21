@@ -18,8 +18,9 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private string _agentId;
         private string _advertiserId;
         private string _jobTitle;
-        private int? _employmentType;
-        private Models.JobStreet.LocationModel[] _location;
+        private int?[] _employmentType;
+        private int?[] _locationId;
+        private string _locationArea;
         private decimal _salaryMinimum;
         private decimal _salaryMaximum;
         private int? _salaryCurrencyCode;
@@ -37,6 +38,8 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private Models.Action _action;
         private string _applicationFormUrl;
         private string _applicationEmail;
+        private string _companyOverview;
+        private string _jobReference;
         #endregion CENTRALISED CODE END
 
         #region JOBSTREET CODE START
@@ -46,6 +49,16 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private int?[] _language;
         private int? _templateId;
         #endregion JOBSTREET CODE END
+
+        #region JOBSDB CODE START 
+        /*private int _jobIndustry;
+        private int _nationality;
+        private string _companyName;
+        private bool _workAuthorization;
+        private bool _wantFreshGrad;
+        private int _localResidentOnly;
+        private int[] _benefits;*/
+        #endregion JOBSDB CODE END
 
         /*private string _agentId;
         private string _advertiserId;
@@ -93,15 +106,15 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             initializer?.Initialize(this);
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithAgentId(string agentId)
-        {
-            this._agentId = agentId;
-            return this;
-        }
-
         public AdvertisementModelBuilder<TAdvertisement> WithAdvertiserId(string advertiserId)
         {
             this._advertiserId = advertiserId;
+            return this;
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithAgentId(string agentId)
+        {
+            this._agentId = agentId;
             return this;
         }
 
@@ -111,15 +124,21 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return this;
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithEmploymentType(int employmentType)
+        public AdvertisementModelBuilder<TAdvertisement> WithEmploymentType(int?[] employmentType)
         {
             this._employmentType = employmentType;
             return this;
         }
 
-        public AdvertisementModelBuilder<TAdvertisement> WithLocation(params Models.JobStreet.LocationModel[] location)
+        public AdvertisementModelBuilder<TAdvertisement> WithLocationId(int?[] locationId)
         {
-            this._location = location.ToArray();        
+            this._locationId = locationId;
+            return this;
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithLocationArea(string locationArea)
+        {
+            this._locationArea = locationArea;
             return this;
         }
 
@@ -226,6 +245,18 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return this;
         }
 
+        public AdvertisementModelBuilder<TAdvertisement> WithCompanyOverview(string companyOverview)
+        {
+            this._companyOverview = companyOverview;
+            return this;
+        }
+
+        public AdvertisementModelBuilder<TAdvertisement> WithJobReference(string jobReference)
+        {
+            this._jobReference = jobReference;
+            return this;
+        }
+
         public AdvertisementModelBuilder<TAdvertisement> WithFieldOfStudy(int?[] fieldOfStudy)
         {
             this._fieldOfStudy = fieldOfStudy; //.ToArray();
@@ -259,27 +290,11 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
 
         public virtual TAdvertisement Build()
         {
-            /*ThirdParties _thirdParties = null;
-            if (this._advertiserId != null && this._agentId == null)
-            {
-                _thirdParties = new ThirdParties { AdvertiserId = this._advertiserId };
-            }
-            else if (this._advertiserId == null && this._agentId != null)
-            {
-                _thirdParties = new ThirdParties { AgentId = this._agentId };
-            }
-            else if (this._advertiserId != null && this._agentId != null)
-            {
-                _thirdParties = new ThirdParties { AdvertiserId = this._advertiserId, AgentId = this._agentId };
-            }*/
-
             return new TAdvertisement
             {
-                //ThirdParties = _thirdParties,
                 ThirdParties = this._advertiserId == null && this._agentId == null
                     ? null
                     : new ThirdParties { AdvertiserId = this._advertiserId, AgentId = this._agentId },
-                TemplateId = this._templateId,
                 JobTitle = this._jobTitle,
                 EmploymentType = this._employmentType,
                 Salary = new Models.JobStreet.SalaryModel
@@ -289,24 +304,31 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                     CurrencyCode = this._salaryCurrencyCode,
                     Display = this._salaryDisplay
                 },
-                Location = this._location?.ToArray(),
+                Location = new Models.JobStreet.LocationModel
+                {
+                    id = this._locationId,
+                    area = this._locationArea
+                },
                 JobDescription = this._jobDescription,
                 JobSpecialization = this._jobSpecialization,
                 JobRole = this._jobRole,
                 EducationLevel = this._educationLevel,
-                FieldOfStudy = this._fieldOfStudy,
                 PositionLevel = this._positionLevel,
                 YearOfExperience = this._yearOfExperience,
-                Skill = this._skill,
-                ApplicationEmail = this._applicationEmail,
                 Site = this._site,
-                BlindAd = this._blindAd,
-                Language = this._language,
                 PostingDate = this._postingDate,
+                StandOutBullet = this._standOutBullet?.ToArray(),
+                CreationId = this._creationId,
                 Action = this._action,
                 ApplicationFormUrl = this._applicationFormUrl,
-                StandOutBullet = this._standOutBullet?.ToArray(),
-                CreationId = this._creationId
+                ApplicationEmail = this._applicationEmail,
+                CompanyOverview = this._companyOverview,
+                JobReference = this._jobReference,
+                FieldOfStudy = this._fieldOfStudy,
+                Skill = this._skill,
+                BlindAd = this._blindAd,
+                Language = this._language,
+                TemplateId = this._templateId
             };
         }
     }

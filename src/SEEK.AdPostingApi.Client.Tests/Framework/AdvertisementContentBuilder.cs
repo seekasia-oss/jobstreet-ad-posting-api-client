@@ -59,9 +59,17 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return this;
         }
 
-        public AdvertisementContentBuilder WithLocation(params object[] location)
+        public AdvertisementContentBuilder WithLocationId(object locationId)
         {
-            this.AdvertisementModel.location = location?.Clone<object[]>();
+            this.EnsureLocationPropertyExists();
+            this.AdvertisementModel.location.id = locationId;
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithLocationArea(object locationArea)
+        {
+            this.EnsureLocationPropertyExists();
+            this.AdvertisementModel.location.area = locationArea;
             return this;
         }
 
@@ -223,6 +231,18 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return this;
         }
 
+        public AdvertisementContentBuilder WithCompanyOverview(object companyOverview)
+        {
+            this.AdvertisementModel.companyOverview = companyOverview;
+            return this;
+        }
+
+        public AdvertisementContentBuilder WithJobReference(object jobReference)
+        {
+            this.AdvertisementModel.jobReference = jobReference;
+            return this;
+        }
+
         public AdvertisementContentBuilder WithFieldOfStudy(object fieldOfStudy)
         {
             if (fieldOfStudy == null)
@@ -311,6 +331,14 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             if (!((IDictionary<string, object>)this.AdvertisementModel).ContainsKey("salary"))
             {
                 this.AdvertisementModel.salary = new ExpandoObject();
+            }
+        }
+
+        private void EnsureLocationPropertyExists()
+        {
+            if (!((IDictionary<string, object>)this.AdvertisementModel).ContainsKey("location"))
+            {
+                this.AdvertisementModel.location = new ExpandoObject();
             }
         }
 

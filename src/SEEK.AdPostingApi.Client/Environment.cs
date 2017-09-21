@@ -4,7 +4,7 @@
     {
         /*[EnvironmentUrl("https://adposting-integration.cloud.seek.com.au")]
         Integration,*/
-        [EnvironmentUrl("https://ntkkt5dwpl.execute-api.ap-southeast-1.amazonaws.com/dev/api")]
+        [EnvironmentUrl("https://ntkkt5dwpl.execute-api.ap-southeast-1.amazonaws.com/dev")]
         Integration,
 
         [EnvironmentUrl("https://adposting.cloud.seek.com.au")]

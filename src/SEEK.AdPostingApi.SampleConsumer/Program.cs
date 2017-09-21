@@ -14,6 +14,7 @@ namespace SEEK.AdPostingApi.SampleConsumer
 {
     public class Program
     {
+        private static string CreationId = "Sample Consumer " + Guid.NewGuid();
         private const string AdvertiserId = "1001000001";
         private const int BaseRetryIntervalSeconds = 2;
         private const string ClientId = "client1"; //"ClientId"; //"client1";
@@ -47,6 +48,7 @@ namespace SEEK.AdPostingApi.SampleConsumer
 
                     // Modify details on the advertisement
                     advertisementResource.JobTitle = "Senior Dude";
+                    advertisementResource.CreationId = CreationId;
                     AdvertisementResource updatedAdvertisementResource = await UpdateAdvertisementExampleAsync(advertisementResource);
 
                     // Expire the advertisement
@@ -162,10 +164,6 @@ namespace SEEK.AdPostingApi.SampleConsumer
 
         private static Advertisement GetExampleAdvertisementToCreate()
         {
-            LocationModel[] arrLocation = new LocationModel[2];
-            arrLocation[0] = new LocationModel { Id = 50300 };
-            arrLocation[1] = new LocationModel { Id = 70100 };
-            
             return new Advertisement
             {
                 /*CreationId = "Sample Consumer " + Guid.NewGuid(),
@@ -195,7 +193,7 @@ namespace SEEK.AdPostingApi.SampleConsumer
                 SubclassificationId = "AerospaceEngineering"*/
                 ThirdParties = new ThirdParties { AdvertiserId = AdvertiserId },
                 JobTitle = "Senior Front-end Developer",
-                EmploymentType = 1,
+                EmploymentType = new int?[] { 1 },
                 Salary = new SalaryModel
                 {
                     Minimum = 1000,
@@ -203,7 +201,11 @@ namespace SEEK.AdPostingApi.SampleConsumer
                     CurrencyCode = 1,
                     Display = true
                 },
-                Location = arrLocation,
+                Location = new LocationModel
+                {
+                    id = new int?[] { 50300, 70100 },
+                    area = ""
+                },
                 JobDescription = "Responsibility You know have knowledge of Laravel and AngularJS. Understand requirement and delivery quality products.",
                 JobSpecialization = 191,
                 JobRole = 1333,
@@ -218,10 +220,12 @@ namespace SEEK.AdPostingApi.SampleConsumer
                 Action = Client.Models.Action.post,
                 ApplicationFormUrl = "www.seekasia.com",
                 ApplicationEmail = "klang@seekasia.com",
+                CompanyOverview = "",
+                JobReference = "",
                 Skill = new string[] { "php", ".net", "java" },
                 BlindAd = false,
                 TemplateId = 12345,
-                CreationId = "Sample Consumer " + Guid.NewGuid()
+                CreationId = CreationId //"Sample Consumer " + Guid.NewGuid()
             };
         }
 

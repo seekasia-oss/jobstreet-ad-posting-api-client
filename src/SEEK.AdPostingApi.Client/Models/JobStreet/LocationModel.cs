@@ -14,12 +14,12 @@ namespace SEEK.AdPostingApi.Client.Models.JobStreet
 
         public LocationModel(LocationModel model)
         {
-            this.Id = model.Id;
-            this.Area = model.Area;
+            this.id = model.id;
+            this.area = model.area;
         }
 
-        public int? Id { get; set; }
+        public int?[] id { get; set; }
 
-        public string Area { get; set; }
+        public string area { get; set; }
     }
 }

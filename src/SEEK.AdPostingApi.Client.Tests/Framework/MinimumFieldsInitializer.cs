@@ -14,8 +14,8 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 .WithSalaryMaximum(GetDefaultSalaryMaximum())
                 .WithSalaryCurrencyCode(GetDefaultSalaryCurrencyCode())
                 .WithSalaryDisplay(GetDefaultSalaryDisplay())
-                .WithLocation(
-                    new Models.JobStreet.LocationModel { Id = 50001, Area = "Test Area" })
+                .WithLocationId(GetDefaultLocationId())
+                .WithLocationArea(GetDefaultLocationArea())
                 .WithJobDescription(GetDefaultJobDescription())
                 .WithJobSpecialization(GetDefaultJobSpecialization())
                 .WithJobRole(GetDefaultJobRole())
@@ -53,8 +53,8 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 .WithSalaryMaximum(GetDefaultSalaryMaximum())
                 .WithSalaryCurrencyCode(GetDefaultSalaryCurrencyCode())
                 .WithSalaryDisplay(GetDefaultSalaryDisplay())
-                .WithLocation(
-                    new Models.JobStreet.LocationModel { Id = 50001, Area = "Test Area" })
+                .WithLocationId(GetDefaultLocationId())
+                .WithLocationArea(GetDefaultLocationArea())
                 .WithJobDescription(GetDefaultJobDescription())
                 .WithJobSpecialization(GetDefaultJobSpecialization())
                 .WithJobRole(GetDefaultJobRole())
@@ -90,9 +90,9 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return "Front-end Developer";
         }
 
-        private int GetDefaultEmploymentType()
+        private int?[] GetDefaultEmploymentType()
         {
-            return 3;
+            return new int?[] { 3 };
         }
 
         private decimal GetDefaultSalaryMinimum()
@@ -113,6 +113,16 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private bool GetDefaultSalaryDisplay()
         {
             return true;
+        }
+
+        private int?[] GetDefaultLocationId()
+        {
+            return new int?[] { 50001 };
+        }
+
+        private string GetDefaultLocationArea()
+        {
+            return "Test Area";
         }
 
         private string GetDefaultJobDescription()

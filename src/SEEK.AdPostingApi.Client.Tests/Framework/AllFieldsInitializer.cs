@@ -28,7 +28,9 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 .WithLanguage(GetDefaultLanguage())
                 .WithAction(GetDefaultAction())
                 .WithApplicationFormUrl(GetDefaultApplicationFormUrl())
-                .WithStandOutBullet(GetDefaultStandoutBullet());
+                .WithStandOutBullet(GetDefaultStandoutBullet())
+                .WithCompanyOverview(GetDefaultCompanyOverview())
+                .WithJobReference(GetDefaultJobReference());
 
             /*builder
                 //.WithSearchJobTitle(this.GetDefaultSearchJobTitle())
@@ -85,8 +87,9 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 .WithLanguage(GetDefaultLanguage())
                 .WithAction(GetDefaultAction())
                 .WithApplicationFormUrl(GetDefaultApplicationFormUrl())
-                .WithStandOutBullet(GetDefaultStandoutBullet());
-
+                .WithStandOutBullet(GetDefaultStandoutBullet())
+                .WithCompanyOverview(GetDefaultCompanyOverview())
+                .WithJobReference(GetDefaultJobReference());
             /*builder
                 //.WithSearchJobTitle(this.GetDefaultSearchJobTitle())
                 //.WithAgentId(this.GetDefaultAgentId())
@@ -181,6 +184,16 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private string[] GetDefaultStandoutBullet()
         {
             return new string[] { "Good", "Best", "Awesome" };
+        }
+
+        private string GetDefaultCompanyOverview()
+        {
+            return "this is company overview";
+        }
+
+        private string GetDefaultJobReference()
+        {
+            return "job1234";
         }
 
         /* ------------------------------------------------------------------------------------------------------------ */

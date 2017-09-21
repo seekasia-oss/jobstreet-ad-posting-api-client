@@ -12,9 +12,9 @@ namespace SEEK.AdPostingApi.Client.Models
 
         public string JobTitle { get; set; }
 
-        public int? EmploymentType { get; set; }
+        public int?[] EmploymentType { get; set; } //int?
 
-        public JobStreet.LocationModel[] Location { get; set; }
+        public JobStreet.LocationModel Location { get; set; } //JobStreet.LocationModel[]
 
         public JobStreet.SalaryModel Salary { get; set; }
 
@@ -44,6 +44,10 @@ namespace SEEK.AdPostingApi.Client.Models
 
         public string ApplicationEmail { get; set; }
 
+        public string CompanyOverview { get; set; }
+
+        public string JobReference { get; set; }
+
         #endregion CENTRALISED CODE END
 
         #region JOBSTREET CODE START
@@ -62,13 +66,11 @@ namespace SEEK.AdPostingApi.Client.Models
 
         #region JOBSDB CODE START 
 
-        public int JobIndustry { get; set; }
+        /*public int JobIndustry { get; set; }
 
         public int Nationality { get; set; }
 
         public string CompanyName { get; set; }
-
-        public string CompanyDescription { get; set; }
 
         public bool WorkAuthorization { get; set; }
 
@@ -76,7 +78,7 @@ namespace SEEK.AdPostingApi.Client.Models
 
         public int LocalResidentOnly { get; set; }
 
-        public int[] Benefits { get; set; }
+        public int[] Benefits { get; set; }*/
 
         #endregion JOBSDB CODE END
 

@@ -30,8 +30,7 @@ namespace SEEK.AdPostingApi.Client.Hal
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JToken token = JToken.ReadFrom(reader);
-            string a = token.ToString();
-            object result = JsonConvert.DeserializeObject(a, objectType);
+            object result = JsonConvert.DeserializeObject(token.ToString(), objectType);
 
             if (token["_embedded"] != null && token["_embedded"].HasValues)
             {
