@@ -1,4 +1,5 @@
 ﻿using SEEK.AdPostingApi.Client.Models;
+using System;
 
 namespace SEEK.AdPostingApi.Client.Tests.Framework
 {
@@ -7,7 +8,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         public void Initialize(AdvertisementContentBuilder builder)
         {
             builder
-                .WithAdvertiserId(this.GetDefaultAdvertiserId())
+                .WithAdvertiserId(GetDefaultAdvertiserId())
                 .WithJobTitle(GetDefaultJobTitle())
                 .WithEmploymentType(GetDefaultEmploymentType())
                 .WithSalaryMinimum(GetDefaultSalaryMinimum())
@@ -23,8 +24,10 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 .WithFieldOfStudy(GetDefaultFieldOfStudy())
                 .WithPositionLevel(GetDefaultPositionLevel())
                 .WithYearOfExperience(GetDefaultYearOfExperience())
-                .WithSite(GetDefaultSite());
-                
+                .WithSite(GetDefaultSite())
+                .WithBlindAd(GetDefaultBlindAd())
+                .WithPostingDate(GetDefaultPostingDate())
+                .WithAction(GetDefaultAction());
             /*builder
                 //.WithAdvertisementDetails(this.GetDefaultAdvertisementDetails())
                 .WithAdvertiserId(this.GetDefaultAdvertiserId())
@@ -62,8 +65,10 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 .WithFieldOfStudy(GetDefaultFieldOfStudy())
                 .WithPositionLevel(GetDefaultPositionLevel())
                 .WithYearOfExperience(GetDefaultYearOfExperience())
-                .WithSite(GetDefaultSite());
-
+                .WithSite(GetDefaultSite())
+                .WithBlindAd(GetDefaultBlindAd())
+                .WithPostingDate(GetDefaultPostingDate())
+                .WithAction(GetDefaultAction());
             /*builder
                 .WithAdvertiserId(this.GetDefaultAdvertiserId())
                 //.WithAdvertisementType(AdvertisementType.Classic)
@@ -168,6 +173,21 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private Brand GetDefaultBrand()
         {
             return Brand.jobstreet;
+        }
+
+        private bool GetDefaultBlindAd()
+        {
+            return false;
+        }
+
+        private DateTime GetDefaultPostingDate()
+        {
+            return new DateTime(2017, 09, 30);
+        }
+
+        private Models.Action GetDefaultAction()
+        {
+            return Models.Action.none; // Models.Action.none;
         }
 
         /* ------------------------------------------------------------------------------------------------------------ */
