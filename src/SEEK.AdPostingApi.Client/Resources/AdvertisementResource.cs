@@ -6,7 +6,7 @@ using SEEK.AdPostingApi.Client.Models;
 
 namespace SEEK.AdPostingApi.Client.Resources
 {
-    [MediaType("application/vnd.seek.advertisement+json;version=1")]
+    [MediaType("application/vnd.seekasia.advertisement+json;version=1")]
     public class AdvertisementResource : Advertisement, IResource
     {
         private Hal.Client _client;
@@ -30,6 +30,8 @@ namespace SEEK.AdPostingApi.Client.Resources
         public string RequestId { get; set; }
 
         public AdvertisementState State { get; set; }
+
+        public AdvertisementError[] Warnings { get; set; }
 
         [JsonIgnore]
         public Uri Uri => this.Links.GenerateLink("self");

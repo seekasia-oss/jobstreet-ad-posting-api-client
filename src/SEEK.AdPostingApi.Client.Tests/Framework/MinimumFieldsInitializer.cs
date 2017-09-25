@@ -1,4 +1,5 @@
 ﻿using SEEK.AdPostingApi.Client.Models;
+using System;
 
 namespace SEEK.AdPostingApi.Client.Tests.Framework
 {
@@ -7,20 +8,24 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         public void Initialize(AdvertisementContentBuilder builder)
         {
             builder
-                .WithAdvertisementDetails(this.GetDefaultAdvertisementDetails())
-                .WithAdvertiserId(this.GetDefaultAdvertiserId())
-                .WithAdvertisementType(AdvertisementType.Classic.ToString())
-                .WithJobSummary(this.GetDefaultJobSummary())
-                .WithJobTitle(this.GetDefaultJobTitle())
-                .WithLocationId(this.GetDefaultLocationId())
-                .WithLocationAreaId(this.GetDefaultLocationAreaId())
-                .WithSalaryMinimum(this.GetDefaultSalaryMinimum())
-                .WithSalaryMaximum(this.GetDefaultSalaryMaximum())
-                .WithSalaryType(this.GetDefaultSalaryType().ToString())
-                .WithSubclassificationId(this.GetDefaultSubclassificationId())
-                .WithWorkType(this.GetDefaultWorkType().ToString())
-                .WithRecruiterFullName(this.GetDefaultRecruiterFullName())
-                .WithRecruiterEmail(this.GetDefaultRecruiterEmail());
+                .WithAdvertiserId(GetDefaultAdvertiserId())
+                .WithJobTitle(GetDefaultJobTitle())
+                .WithEmploymentType(GetDefaultEmploymentType())
+                .WithSalaryMinimum(GetDefaultSalaryMinimum())
+                .WithSalaryMaximum(GetDefaultSalaryMaximum())
+                .WithSalaryCurrencyCode(GetDefaultSalaryCurrencyCode())
+                .WithSalaryDisplay(GetDefaultSalaryDisplay())
+                .WithLocationId(GetDefaultLocationId())
+                .WithJobDescription(GetDefaultJobDescription())
+                .WithJobSpecialization(GetDefaultJobSpecialization())
+                .WithJobRole(GetDefaultJobRole())
+                .WithEducationLevel(GetDefaultEducationLevel())
+                .WithFieldOfStudy(GetDefaultFieldOfStudy())
+                .WithPositionLevel(GetDefaultPositionLevel())
+                .WithYearOfExperience(GetDefaultYearOfExperience())
+                .WithSite(GetDefaultSite())
+                .WithBlindAd(GetDefaultBlindAd()) //optional
+                .WithPostingDate(GetDefaultPostingDate()); //optional          
         }
 
         public void Initialize<TAdvertisement>(AdvertisementModelBuilder<TAdvertisement> builder)
@@ -28,83 +33,113 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         {
             builder
                 .WithAdvertiserId(this.GetDefaultAdvertiserId())
-                .WithAdvertisementType(AdvertisementType.Classic)
-                .WithJobTitle(this.GetDefaultJobTitle())
-                .WithLocationArea(this.GetDefaultLocationId(), this.GetDefaultLocationAreaId())
-                .WithSubclassificationId(this.GetDefaultSubclassificationId())
-                .WithWorkType(this.GetDefaultWorkType())
-                .WithSalaryType(this.GetDefaultSalaryType())
-                .WithSalaryMinimum(this.GetDefaultSalaryMinimum())
-                .WithSalaryMaximum(this.GetDefaultSalaryMaximum())
-                .WithJobSummary(this.GetDefaultJobSummary())
-                .WithAdvertisementDetails(this.GetDefaultAdvertisementDetails())
-                .WithRecruiterFullName(this.GetDefaultRecruiterFullName())
-                .WithRecruiterEmail(this.GetDefaultRecruiterEmail());
-        }
-
-        private string GetDefaultAdvertisementDetails()
-        {
-            return "Exciting, do I need to say more?";
+                .WithJobTitle(GetDefaultJobTitle())
+                .WithEmploymentType(GetDefaultEmploymentType())
+                .WithSalaryMinimum(GetDefaultSalaryMinimum())
+                .WithSalaryMaximum(GetDefaultSalaryMaximum())
+                .WithSalaryCurrencyCode(GetDefaultSalaryCurrencyCode())
+                .WithSalaryDisplay(GetDefaultSalaryDisplay())
+                .WithLocationId(GetDefaultLocationId())
+                .WithJobDescription(GetDefaultJobDescription())
+                .WithJobSpecialization(GetDefaultJobSpecialization())
+                .WithJobRole(GetDefaultJobRole())
+                .WithEducationLevel(GetDefaultEducationLevel())
+                .WithFieldOfStudy(GetDefaultFieldOfStudy())
+                .WithPositionLevel(GetDefaultPositionLevel())
+                .WithYearOfExperience(GetDefaultYearOfExperience())
+                .WithSite(GetDefaultSite())
+                .WithBlindAd(GetDefaultBlindAd())
+                .WithPostingDate(GetDefaultPostingDate());
         }
 
         private string GetDefaultAdvertiserId()
         {
-            return "1";
-        }
-
-        private string GetDefaultJobSummary()
-        {
-            return "Developer job";
+            return "1001000001";
         }
 
         private string GetDefaultJobTitle()
         {
-            return "Exciting Senior Developer role in a great CBD location. Great $$$";
+            return "Front-end Developer";
         }
 
-        private string GetDefaultLocationAreaId()
+        private int?[] GetDefaultEmploymentType()
         {
-            return "RussiaEasternEurope";
-        }
-
-        private string GetDefaultLocationId()
-        {
-            return "EuropeRussia";
-        }
-
-        private decimal GetDefaultSalaryMaximum()
-        {
-            return 119999;
+            return new int?[] { 3 };
         }
 
         private decimal GetDefaultSalaryMinimum()
         {
-            return 100000;
+            return (decimal)1000.0;
         }
 
-        private SalaryType GetDefaultSalaryType()
+        private decimal GetDefaultSalaryMaximum()
         {
-            return SalaryType.AnnualPackage;
+            return (decimal)1599.0;
         }
 
-        private string GetDefaultSubclassificationId()
+        private int GetDefaultSalaryCurrencyCode()
         {
-            return "AerospaceEngineering";
+            return 1;
         }
 
-        private WorkType GetDefaultWorkType()
+        private bool GetDefaultSalaryDisplay()
         {
-            return WorkType.FullTime;
+            return true;
         }
 
-        private string GetDefaultRecruiterFullName()
+        private int?[] GetDefaultLocationId()
         {
-            return "Recruiter Full Name";
+            return new int?[] { 50001 };
         }
 
-        private string GetDefaultRecruiterEmail()
+        private string GetDefaultJobDescription()
         {
-            return "recruiter@email.com";
+            return "This is job description";
+        }
+
+        private int GetDefaultJobSpecialization()
+        {
+            return 191;
+        }
+
+        private int GetDefaultJobRole()
+        {
+            return 1333;
+        }
+
+        private int?[] GetDefaultEducationLevel()
+        {
+            return new int?[] { 4, 5};
+        }
+
+        private int?[] GetDefaultFieldOfStudy()
+        {
+            return new int?[] { 8 };
+        }
+
+        private int? GetDefaultPositionLevel()
+        {
+            return 16;
+        }
+
+        private int GetDefaultYearOfExperience()
+        {
+            return 2;
+        }
+
+        private int?[] GetDefaultSite()
+        {
+            return new int?[] { 1, 2 };
+        }
+
+        private bool GetDefaultBlindAd()
+        {
+            return false;
+        }
+
+        private DateTime GetDefaultPostingDate()
+        {
+            return new DateTime(2017, 09, 30);
         }
     }
 }

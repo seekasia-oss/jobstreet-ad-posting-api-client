@@ -6,6 +6,7 @@ using Polly;
 using Polly.Retry;
 using SEEK.AdPostingApi.Client;
 using SEEK.AdPostingApi.Client.Models;
+using SEEK.AdPostingApi.Client.Models.JobStreet;
 using SEEK.AdPostingApi.Client.Resources;
 using Environment = SEEK.AdPostingApi.Client.Environment;
 
@@ -13,10 +14,11 @@ namespace SEEK.AdPostingApi.SampleConsumer
 {
     public class Program
     {
-        private const string AdvertiserId = "AdvertiserId";
+        private static string CreationId = "Sample Consumer " + Guid.NewGuid();
+        private const string AdvertiserId = "1001000001";
         private const int BaseRetryIntervalSeconds = 2;
-        private const string ClientId = "ClientId";
-        private const string ClientSecret = "ClientSecret";
+        private const string ClientId = "client1"; //"ClientId"; //"client1";
+        private const string ClientSecret = "secret"; //"ClientSecret"; //"secret";
 
         private static readonly RetryPolicy TransientErrorRetryPolicy = Policy
             .Handle<RequestException>(ex => ex.StatusCode >= 500)
@@ -46,6 +48,7 @@ namespace SEEK.AdPostingApi.SampleConsumer
 
                     // Modify details on the advertisement
                     advertisementResource.JobTitle = "Senior Dude";
+                    advertisementResource.CreationId = CreationId;
                     AdvertisementResource updatedAdvertisementResource = await UpdateAdvertisementExampleAsync(advertisementResource);
 
                     // Expire the advertisement
@@ -163,31 +166,40 @@ namespace SEEK.AdPostingApi.SampleConsumer
         {
             return new Advertisement
             {
-                CreationId = "Sample Consumer " + Guid.NewGuid(),
                 ThirdParties = new ThirdParties { AdvertiserId = AdvertiserId },
-                JobTitle = "A Job for a Dude",
-                SearchJobTitle = "Dudes find job best when they search on this title",
-                JobSummary = "Things a dude should know",
-                AdvertisementDetails = "Things the dude should have done and will need to do",
-                AdvertisementType = AdvertisementType.Classic,
-                WorkType = WorkType.Casual,
-                Salary = new Salary
+                JobTitle = "Senior Front-end Developer",
+                EmploymentType = new int?[] { 1 },
+                Salary = new SalaryModel
                 {
-                    Type = SalaryType.HourlyRate,
-                    Minimum = 20,
-                    Maximum = 24
+                    Minimum = 1000,
+                    Maximum = 3000,
+                    CurrencyCode = 1,
+                    Display = true
                 },
-                Location = new Location
+                Location = new LocationModel
                 {
-                    Id = "Melbourne",
-                    AreaId = "MelbourneNorthernSuburbs"
+                    Id = new int?[] { 50300, 70100 },
+                    Area = ""
                 },
-                Recruiter = new Recruiter
-                {
-                    FullName = "Recruiter full name",
-                    Email = "recruiter@email.com"
-                },
-                SubclassificationId = "AerospaceEngineering"
+                JobDescription = "Responsibility You know have knowledge of Laravel and AngularJS. Understand requirement and delivery quality products.",
+                JobSpecialization = 191,
+                JobRole = 1333,
+                EducationLevel = new int?[] { 4, 5 },
+                FieldOfStudy = new int?[] { 8 },
+                PositionLevel = 16,
+                YearOfExperience = 2,
+                Site = new int?[] { 1, 2 },
+                Language = new int?[] { 1, 2, 3 },
+                PostingDate = new DateTime(2017, 9, 30),
+                StandOutBullet = new string[] { "Good", "Best", "Awesome" },
+                ApplicationFormUrl = "www.seekasia.com",
+                ApplicationEmail = "klang@seekasia.com",
+                CompanyOverview = "",
+                JobReference = "",
+                Skill = new string[] { "php", ".net", "java" },
+                BlindAd = false,
+                TemplateId = 12345,
+                CreationId = CreationId
             };
         }
 

@@ -19,6 +19,7 @@ namespace SEEK.AdPostingApi.Client.Hal
         public Uri GenerateLink(string relation, object parameters = null)
         {
             return new Uri(this.BaseUri, this[relation].Resolve(parameters));
+            //return new Uri(this.BaseUri, "/dev" + this[relation].Resolve(parameters));
         }
     }
 }
