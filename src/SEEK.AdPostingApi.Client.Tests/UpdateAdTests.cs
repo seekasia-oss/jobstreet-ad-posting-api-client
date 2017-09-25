@@ -97,12 +97,8 @@ namespace SEEK.AdPostingApi.Client.Tests
                         { "User-Agent", AdPostingApiFixture.UserAgentHeaderValue }
                     },
                     Body = new AdvertisementContentBuilder(this.AllFieldsInitializer)
-                        //.WithAgentId(null)
-                        //.WithAgentJobReference(null)
                         .WithJobTitle("Exciting Senior Developer role in a great CBD location. Great $$$ - updated")
-                        //.WithVideoUrl("https://www.youtube.com/embed/dVDk7PXNXB8")
                         .WithApplicationFormUrl("http://FakeATS.com.au")
-                        //.WithEndApplicationUrl("http://endform.com/updated")
                         .WithStandOutBullet("new Uzi", "new Remington Model", "new AK-47")
                         .Build()
                 })
@@ -120,12 +116,8 @@ namespace SEEK.AdPostingApi.Client.Tests
                             .WithId(AdvertisementId)
                             .WithLink("self", link)
                             .WithLink("view", viewRenderedAdvertisementLink)
-                            //.WithAgentId(null)
-                            //.WithAgentJobReference(null)
                             .WithJobTitle("Exciting Senior Developer role in a great CBD location. Great $$$ - updated")
-                            //.WithVideoUrl("https://www.youtube.com/embed/dVDk7PXNXB8")
                             .WithApplicationFormUrl("http://FakeATS.com.au")
-                            //.WithEndApplicationUrl("http://endform.com/updated")
                             .WithStandOutBullet("new Uzi", "new Remington Model", "new AK-47")
                             .Build()
                     });
@@ -135,12 +127,8 @@ namespace SEEK.AdPostingApi.Client.Tests
             AdvertisementModelBuilder<TAdvertisement> builder) where TAdvertisement : Advertisement, new()
         {
             return builder
-                //.WithAgentId(null)
-                //.WithAgentJobReference(null)
                 .WithJobTitle("Exciting Senior Developer role in a great CBD location. Great $$$ - updated")
-                //.WithVideoUrl("https://www.youtube.com/embed/dVDk7PXNXB8")
                 .WithApplicationFormUrl("http://FakeATS.com.au")
-                //.WithEndApplicationUrl("http://endform.com/updated")
                 .WithStandOutBullet("new Uzi", "new Remington Model", "new AK-47");
         }
 
@@ -166,7 +154,6 @@ namespace SEEK.AdPostingApi.Client.Tests
                         { "User-Agent", AdPostingApiFixture.UserAgentHeaderValue }
                     },
                     Body = new AdvertisementContentBuilder(this.MinimumFieldsInitializer)
-                        //.WithAdvertisementDetails("This advertisement should not exist.")
                         .WithJobDescription("This advertisement should not exist.")
                         .Build()
                 })
@@ -184,7 +171,6 @@ namespace SEEK.AdPostingApi.Client.Tests
                 actualException = await Assert.ThrowsAsync<AdvertisementNotFoundException>(
                     async () => await client.UpdateAdvertisementAsync(new Uri(this.Fixture.AdPostingApiServiceBaseUri, link),
                         new AdvertisementModelBuilder(this.MinimumFieldsInitializer)
-                            //.WithAdvertisementDetails("This advertisement should not exist.")
                             .WithJobDescription("This advertisement should not exist.")
                             .Build()));
             }
@@ -213,19 +199,12 @@ namespace SEEK.AdPostingApi.Client.Tests
                         { "User-Agent", AdPostingApiFixture.UserAgentHeaderValue }
                     },
                     Body = new AdvertisementContentBuilder(this.MinimumFieldsInitializer)
-                        .WithSalaryMinimum(-1.0)
-                        .WithSalaryMaximum(3000)
+                        .WithSalaryMinimum((decimal)-1.0)
+                        .WithSalaryMaximum((decimal)3000.0)
                         .WithSalaryCurrencyCode(1)
-                        .WithSalaryDisplay(null)
-                        //.WithAdvertisementType(AdvertisementType.StandOut.ToString())
-                        .WithStandOutBullet("new Uzi", "new Remington Model".PadRight(65, '!'), "new AK-47")
                         .WithApplicationEmail("klang(at)seekasia.domain")
                         .WithApplicationFormUrl("htp://ww.seekasia.domain/apply")
                         .WithJobTitle("Temporary part-time libraries North-West inter-library loan business unit administration assistant")
-                        .WithAction(Models.Action.edit)
-                        /*.WithTemplateItems(
-                            new KeyValuePair<object, object>("Template Line 1", "Template Value 1"),
-                            new KeyValuePair<object, object>("", "value2"))*/
                         .Build()
                 })
                 .WillRespondWith(
@@ -245,10 +224,8 @@ namespace SEEK.AdPostingApi.Client.Tests
                                 new { field = "applicationEmail", code = "InvalidEmailAddress" },
                                 new { field = "applicationFormUrl", code = "InvalidUrl" },
                                 new { field = "salary.minimum", code = "ValueOutOfRange" },
-                                new { field = "standout.bullets[1]", code = "MaxLengthExceeded" },
                                 new { field = "jobTitle", code = "MaxLengthExceeded" },
                                 new { field = "salary.display", code = "Required" }
-                                //new { field = "template.items[1].name", code = "Required" }
                             }
                         }
                     });
@@ -260,18 +237,12 @@ namespace SEEK.AdPostingApi.Client.Tests
                 actualException = await Assert.ThrowsAsync<ValidationException>(
                     async () => await client.UpdateAdvertisementAsync(new Uri(this.Fixture.AdPostingApiServiceBaseUri, link),
                         new AdvertisementModelBuilder(this.MinimumFieldsInitializer)
-                            //.WithAdvertisementType(AdvertisementType.StandOut)
                             .WithSalaryMinimum((decimal)-1.0)
-                            .WithSalaryMaximum(3000)
+                            .WithSalaryMaximum((decimal)3000.0)
                             .WithSalaryCurrencyCode(1)
-                            .WithStandOutBullet("new Uzi", "new Remington Model".PadRight(65, '!'), "new AK-47")
                             .WithApplicationEmail("klang(at)seekasia.domain")
                             .WithApplicationFormUrl("htp://ww.seekasia.domain/apply")
                             .WithJobTitle("Temporary part-time libraries North-West inter-library loan business unit administration assistant")
-                            .WithAction(Models.Action.edit)
-                            /*.WithTemplateItems(
-                                new TemplateItem { Name = "Template Line 1", Value = "Template Value 1" },
-                                new TemplateItem { Name = "", Value = "value2" })*/
                             .Build()));
             }
 
@@ -287,10 +258,8 @@ namespace SEEK.AdPostingApi.Client.Tests
                             new AdvertisementError { Field = "applicationEmail", Code = "InvalidEmailAddress" },
                             new AdvertisementError { Field = "applicationFormUrl", Code = "InvalidUrl" },
                             new AdvertisementError { Field = "salary.minimum", Code = "ValueOutOfRange" },
-                            new AdvertisementError { Field = "standout.bullets[1]", Code = "MaxLengthExceeded" },
                             new AdvertisementError { Field = "jobTitle", Code = "MaxLengthExceeded" },
                             new AdvertisementError { Field = "salary.display", Code = "Required" }
-                            //new AdvertisementError { Field = "template.items[1].name", Code = "Required" }
                         }
                     });
 
@@ -364,14 +333,14 @@ namespace SEEK.AdPostingApi.Client.Tests
         }
 
         [Fact]
-        public async Task UpdateWithInvalidAdvertisementDetails()
+        public async Task UpdateWithInvalidJobDescription()
         {
             OAuth2Token oAuth2Token = new OAuth2TokenBuilder().Build();
             var link = $"{AdvertisementLink}/{AdvertisementId}";
 
             this.Fixture.AdPostingApiService
                 .Given("There is a standout advertisement with maximum data")
-                .UponReceiving("a PUT advertisement request for advertisement with invalid advertisement details")
+                .UponReceiving("a PUT advertisement request for advertisement with invalid job description")
                 .With(new ProviderServiceRequest
                 {
                     Method = HttpVerb.Put,
@@ -384,7 +353,7 @@ namespace SEEK.AdPostingApi.Client.Tests
                         {"User-Agent", AdPostingApiFixture.UserAgentHeaderValue}
                     },
                     Body = new AdvertisementContentBuilder(this.MinimumFieldsInitializer)
-                        //.WithAdvertisementDetails("Ad details with <a href='www.youtube.com'>a link</a> and incomplete <h2> element")
+                        .WithJobDescription("Ad details with <a href='www.youtube.com'>a link</a> and incomplete <h2> element")
                         .Build()
                 })
                 .WillRespondWith(
@@ -399,7 +368,7 @@ namespace SEEK.AdPostingApi.Client.Tests
                         Body = new
                         {
                             message = "Validation Failure",
-                            errors = new[] { new { field = "advertisementDetails", code = "InvalidFormat" } }
+                            errors = new[] { new { field = "jobDescription", code = "InvalidFormat" } }
                         }
                     });
 
@@ -410,7 +379,7 @@ namespace SEEK.AdPostingApi.Client.Tests
                 actualException = await Assert.ThrowsAsync<ValidationException>(
                     async () => await client.UpdateAdvertisementAsync(new Uri(this.Fixture.AdPostingApiServiceBaseUri, link),
                         new AdvertisementModelBuilder(this.MinimumFieldsInitializer)
-                            //.WithAdvertisementDetails("Ad details with <a href='www.youtube.com'>a link</a> and incomplete <h2> element")
+                            .WithJobDescription("Ad details with <a href='www.youtube.com'>a link</a> and incomplete <h2> element")
                             .Build()));
             }
 
@@ -421,85 +390,11 @@ namespace SEEK.AdPostingApi.Client.Tests
                     new AdvertisementErrorResponse
                     {
                         Message = "Validation Failure",
-                        Errors = new[] { new AdvertisementError { Field = "advertisementDetails", Code = "InvalidFormat" } }
+                        Errors = new[] { new AdvertisementError { Field = "jobDescription", Code = "InvalidFormat" } }
                     });
 
             actualException.ShouldBeEquivalentToException(expectedException);
         }
-
-        /*[Fact]
-        public async Task UpdateWithInvalidAdvertisementDetailsWithCleanseJobAdDetailsOption()
-        {
-            OAuth2Token oAuth2Token = new OAuth2TokenBuilder().Build();
-            var link = $"{AdvertisementLink}/{AdvertisementId}";
-            var viewRenderedAdvertisementLink = $"{AdvertisementLink}/{AdvertisementId}/view";
-            var adDetailsBeforeCleanse = "<p style=\"text-align:justify; font-family:'Comic Sans MS', cursive, sans-serif\">Whimsical</p>";
-            var adDetailsAfterCleanse = "<p style=\"text-align:justify\">Whimsical</p>";
-
-            this.Fixture.AdPostingApiService
-                .Given("There is a standout advertisement with maximum data")
-                .UponReceiving("a PUT advertisement request for advertisement with invalid advertisement details and with 'CleanseJobAdDetails' processing option")
-                .With(new ProviderServiceRequest
-                {
-                    Method = HttpVerb.Put,
-                    Path = link,
-                    Headers = new Dictionary<string, string>
-                    {
-                        {"Authorization", "Bearer " + oAuth2Token.AccessToken},
-                        {"Content-Type", RequestContentTypes.AdvertisementVersion1},
-                        {"Accept", $"{ResponseContentTypes.AdvertisementVersion1}, {ResponseContentTypes.AdvertisementErrorVersion1}"},
-                        {"User-Agent", AdPostingApiFixture.UserAgentHeaderValue}
-                    },
-                    Body = new AdvertisementContentBuilder(this.MinimumFieldsInitializer)
-                        //.WithAdvertisementType(AdvertisementType.StandOut.ToString())
-                        //.WithAdditionalProperties(AdditionalPropertyType.Graduate.ToString())
-                        //.WithAdvertisementDetails(adDetailsBeforeCleanse)
-                        //.WithProcessingOptions(ProcessingOptionsType.CleanseAdvertisementDetails.ToString())
-                        .Build()
-                })
-                .WillRespondWith(
-                    new ProviderServiceResponse
-                    {
-                        Status = 200,
-                        Headers = new Dictionary<string, string>
-                        {
-                            { "Content-Type", ResponseContentTypes.AdvertisementVersion1 },
-                            { "X-Request-Id", RequestId }
-                        },
-                        Body = new AdvertisementResponseContentBuilder(this.MinimumFieldsInitializer)
-                            .WithState(AdvertisementState.Open.ToString())
-                            .WithId(AdvertisementId)
-                            .WithLink("self", link)
-                            .WithLink("view", viewRenderedAdvertisementLink)
-                            //.WithAdvertisementType(AdvertisementType.StandOut.ToString())
-                            //.WithAdditionalProperties(AdditionalPropertyType.Graduate.ToString())
-                            //.WithAdvertisementDetails(adDetailsAfterCleanse)
-                            .Build()
-                    });
-
-            AdvertisementResource result;
-
-            using (AdPostingApiClient client = this.Fixture.GetClient(oAuth2Token))
-            {
-                result = await client.UpdateAdvertisementAsync(new Uri(this.Fixture.AdPostingApiServiceBaseUri, link),
-                        new AdvertisementModelBuilder(this.MinimumFieldsInitializer)
-                            //.WithAdvertisementType(AdvertisementType.StandOut)
-                            //.WithAdditionalProperties(AdditionalPropertyType.Graduate)
-                            //.WithAdvertisementDetails(adDetailsBeforeCleanse)
-                            //.WithProcessingOptions(ProcessingOptionsType.CleanseAdvertisementDetails)
-                            .Build());
-            }
-
-            var expectedResult = new AdvertisementResourceBuilder(this.MinimumFieldsInitializer)
-                .WithId(new Guid(AdvertisementId))
-                .WithLinks(AdvertisementId)
-                //.WithAdvertisementType(AdvertisementType.StandOut)
-                //.WithAdditionalProperties(AdditionalPropertyType.Graduate)
-                //.WithAdvertisementDetails(adDetailsAfterCleanse)
-                .Build();
-
-            result.ShouldBeEquivalentTo(expectedResult);
-        }*/
 
         [Fact]
         public async Task UpdateAdWithADifferentAdvertiserToTheOneOwningTheJob()
@@ -648,8 +543,7 @@ namespace SEEK.AdPostingApi.Client.Tests
                             { "Accept", $"{ResponseContentTypes.AdvertisementVersion1}, {ResponseContentTypes.AdvertisementErrorVersion1}" },
                             { "User-Agent", AdPostingApiFixture.UserAgentHeaderValue }
                         },
-                        Body = new AdvertisementContentBuilder(this.AllFieldsInitializer)
-                            .Build()
+                        Body = new AdvertisementContentBuilder(this.AllFieldsInitializer).Build()
                     }
                 )
                 .WillRespondWith(
@@ -750,68 +644,6 @@ namespace SEEK.AdPostingApi.Client.Tests
 
             actualException.ShouldBeEquivalentToException(expectedException);
         }
-
-        /*[Fact]
-        public async Task UpdateWithGranularLocationData()
-        {
-            OAuth2Token oAuth2Token = new OAuth2TokenBuilder().Build();
-            var link = $"{AdvertisementLink}/{AdvertisementId}";
-            var viewRenderedAdvertisementLink = $"{AdvertisementLink}/{AdvertisementId}/view";
-
-            var allFieldsWithGranularLocationInitializer = new AllFieldsInitializer(LocationType.UseGranularLocation);
-
-            this.Fixture.AdPostingApiService
-                .Given("There is a standout advertisement with maximum data")
-                .UponReceiving("a PUT advertisement request to update granular location")
-                .With(new ProviderServiceRequest
-                {
-                    Method = HttpVerb.Put,
-                    Path = link,
-                    Headers = new Dictionary<string, string>
-                    {
-                        { "Authorization", "Bearer " + oAuth2Token.AccessToken },
-                        { "Content-Type", RequestContentTypes.AdvertisementVersion1 },
-                        { "Accept", $"{ResponseContentTypes.AdvertisementVersion1}, {ResponseContentTypes.AdvertisementErrorVersion1}" },
-                        { "User-Agent", AdPostingApiFixture.UserAgentHeaderValue }
-                    },
-                    Body = new AdvertisementContentBuilder(allFieldsWithGranularLocationInitializer)
-                        .Build()
-                })
-                .WillRespondWith(
-                    new ProviderServiceResponse
-                    {
-                        Status = 200,
-                        Headers = new Dictionary<string, string>
-                        {
-                            { "Content-Type", ResponseContentTypes.AdvertisementVersion1 },
-                            { "X-Request-Id", RequestId }
-                        },
-                        Body = new AdvertisementResponseContentBuilder(allFieldsWithGranularLocationInitializer)
-                            .WithId(AdvertisementId)
-                            .WithState(AdvertisementState.Open.ToString())
-                            .WithLink("self", link)
-                            .WithLink("view", viewRenderedAdvertisementLink)
-                            .WithGranularLocationState(null)
-                            .Build()
-                    });
-
-            Advertisement requestModel = new AdvertisementModelBuilder(allFieldsWithGranularLocationInitializer)
-                .Build();
-            AdvertisementResource result;
-
-            using (AdPostingApiClient client = this.Fixture.GetClient(oAuth2Token))
-            {
-                result = await client.UpdateAdvertisementAsync(new Uri(this.Fixture.AdPostingApiServiceBaseUri, link), requestModel);
-            }
-
-            AdvertisementResource expectedResult = new AdvertisementResourceBuilder(allFieldsWithGranularLocationInitializer)
-                .WithId(new Guid(AdvertisementId))
-                .WithLinks(AdvertisementId)
-                .WithGranularLocationState(null)
-                .Build();
-
-            result.ShouldBeEquivalentTo(expectedResult);
-        }*/
 
         private AdPostingApiFixture Fixture { get; }
     }

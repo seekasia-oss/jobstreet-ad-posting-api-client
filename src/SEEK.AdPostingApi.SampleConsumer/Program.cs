@@ -166,31 +166,6 @@ namespace SEEK.AdPostingApi.SampleConsumer
         {
             return new Advertisement
             {
-                /*CreationId = "Sample Consumer " + Guid.NewGuid(),
-                ThirdParties = new ThirdParties { AdvertiserId = AdvertiserId },
-                JobTitle = "A Job for a Dude",
-                SearchJobTitle = "Dudes find job best when they search on this title",
-                JobSummary = "Things a dude should know",
-                AdvertisementDetails = "Things the dude should have done and will need to do",
-                AdvertisementType = AdvertisementType.Classic,
-                WorkType = WorkType.Casual,
-                Salary = new Salary
-                {
-                    Type = SalaryType.HourlyRate,
-                    Minimum = 20,
-                    Maximum = 24
-                },
-                Location = new Location
-                {
-                    Id = "Melbourne",
-                    AreaId = "MelbourneNorthernSuburbs"
-                },
-                Recruiter = new Recruiter
-                {
-                    FullName = "Recruiter full name",
-                    Email = "recruiter@email.com"
-                },
-                SubclassificationId = "AerospaceEngineering"*/
                 ThirdParties = new ThirdParties { AdvertiserId = AdvertiserId },
                 JobTitle = "Senior Front-end Developer",
                 EmploymentType = new int?[] { 1 },
@@ -203,8 +178,8 @@ namespace SEEK.AdPostingApi.SampleConsumer
                 },
                 Location = new LocationModel
                 {
-                    id = new int?[] { 50300, 70100 },
-                    area = ""
+                    Id = new int?[] { 50300, 70100 },
+                    Area = ""
                 },
                 JobDescription = "Responsibility You know have knowledge of Laravel and AngularJS. Understand requirement and delivery quality products.",
                 JobSpecialization = 191,
@@ -217,7 +192,6 @@ namespace SEEK.AdPostingApi.SampleConsumer
                 Language = new int?[] { 1, 2, 3 },
                 PostingDate = new DateTime(2017, 9, 30),
                 StandOutBullet = new string[] { "Good", "Best", "Awesome" },
-                Action = Client.Models.Action.post,
                 ApplicationFormUrl = "www.seekasia.com",
                 ApplicationEmail = "klang@seekasia.com",
                 CompanyOverview = "",
@@ -225,7 +199,7 @@ namespace SEEK.AdPostingApi.SampleConsumer
                 Skill = new string[] { "php", ".net", "java" },
                 BlindAd = false,
                 TemplateId = 12345,
-                CreationId = CreationId //"Sample Consumer " + Guid.NewGuid()
+                CreationId = CreationId
             };
         }
 

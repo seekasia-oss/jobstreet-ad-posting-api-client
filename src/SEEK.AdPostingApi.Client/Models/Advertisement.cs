@@ -12,9 +12,9 @@ namespace SEEK.AdPostingApi.Client.Models
 
         public string JobTitle { get; set; }
 
-        public int?[] EmploymentType { get; set; } //int?
+        public int?[] EmploymentType { get; set; } 
 
-        public JobStreet.LocationModel Location { get; set; } //JobStreet.LocationModel[]
+        public JobStreet.LocationModel Location { get; set; } 
 
         public JobStreet.SalaryModel Salary { get; set; }
 
@@ -37,8 +37,6 @@ namespace SEEK.AdPostingApi.Client.Models
         public string[] StandOutBullet { get; set; }
 
         public string CreationId { get; set; }
-
-        public Action Action { get; set; }
 
         public string ApplicationFormUrl { get; set; }
 
@@ -81,60 +79,5 @@ namespace SEEK.AdPostingApi.Client.Models
         public int[] Benefits { get; set; }*/
 
         #endregion JOBSDB CODE END
-
-        /*
-        public ThirdParties ThirdParties { get; set; }
-
-        //public string CreationId { get; set; }
-
-        public AdvertisementType AdvertisementType { get; set; }
-
-        //public string JobTitle { get; set; }
-
-        public string SearchJobTitle { get; set; }
-
-        //public Location Location { get; set; }
-
-        public GranularLocation GranularLocation { get; set; }
-
-        public string SubclassificationId { get; set; }
-
-        public WorkType WorkType { get; set; }
-
-        public string JobSummary { get; set; }
-
-        public string AdvertisementDetails { get; set; }
-
-        //public string ApplicationEmail { get; set; }
-
-        //public string ApplicationFormUrl { get; set; }
-
-        public string EndApplicationUrl { get; set; }
-
-        public int? ScreenId { get; set; }
-
-        public string JobReference { get; set; }
-
-        public string AgentJobReference { get; set; }
-
-        //public Salary Salary { get; set; }
-
-        public Contact Contact { get; set; }
-
-        public Template Template { get; set; }
-
-        public Video Video { get; set; }
-
-        //public StandoutAdvertisement Standout { get; set; }
-
-        public AdditionalPropertyType[] AdditionalProperties { get; set; }
-
-        public ProcessingOptionsType[] ProcessingOptions { get; set; }
-
-        public AdvertisementError[] Warnings { get; set; }
-
-        public Recruiter Recruiter { get; set; }
-        */
-
     }
 }

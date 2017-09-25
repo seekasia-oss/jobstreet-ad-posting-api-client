@@ -35,7 +35,6 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private DateTime _postingDate;
         private string[] _standOutBullet;
         private string _creationId;
-        private Models.Action _action;
         private string _applicationFormUrl;
         private string _applicationEmail;
         private string _companyOverview;
@@ -59,47 +58,6 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         private int _localResidentOnly;
         private int[] _benefits;*/
         #endregion JOBSDB CODE END
-
-        /*private string _agentId;
-        private string _advertiserId;
-        private string _creationId;
-        private string _jobTitle;
-        private string _searchJobTitle;
-        private string _jobSummary;
-        private string _advertisementDetails;
-        private AdvertisementType _advertisementType;
-        private WorkType _workType;
-        private string _locationId;
-        private string _areaId;
-        private string _granularLocationCountry;
-        private string _granularLocationState;
-        private string _granularLocationCity;
-        private string _granularLocationPostCode;
-        private string _subclassificationId;
-        private SalaryType _salaryType;
-        private decimal _salaryMinimum;
-        private decimal _salaryMaximum;
-        private string _salaryDetails;
-        private string _contactName;
-        private string _contactPhone;
-        private string _contactEmail;
-        private string _videoUrl;
-        private VideoPosition? _videoPosition;
-        private string _applicationEmail;
-        private string _applicationFormUrl;
-        private string _endApplicationUrl;
-        private int? _screenId;
-        private string _jobReference;
-        private string _agentJobReference;
-        private int? _templateId;
-        private TemplateItem[] _templateItems;
-        private int? _standoutLogoId;
-        private string[] _standoutBullets;
-        private AdditionalPropertyType[] _additionalPropertyTypes;
-        private ProcessingOptionsType[] _processingOptionsTypes;
-        private string _recruiterEmail;
-        private string _recruiterFullName;
-        private string _recruiterTeamName;*/
 
         protected AdvertisementModelBuilder(IBuilderInitializer initializer = null)
         {
@@ -186,7 +144,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
 
         public AdvertisementModelBuilder<TAdvertisement> WithEducationLevel(int?[] educationLevel)
         {
-            this._educationLevel = educationLevel; //?.ToArray();
+            this._educationLevel = educationLevel; 
             return this;
         }
 
@@ -204,7 +162,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
 
         public AdvertisementModelBuilder<TAdvertisement> WithSite(int?[] site)
         {
-            this._site = site; //.ToArray();
+            this._site = site; 
             return this;
         }
 
@@ -224,12 +182,6 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         public AdvertisementModelBuilder<TAdvertisement> WithRequestCreationId(string creationId)
         {
             this._creationId = creationId;
-            return this;
-        }
-
-        public AdvertisementModelBuilder<TAdvertisement> WithAction(Models.Action action)
-        {
-            this._action = action;            
             return this;
         }
 
@@ -259,13 +211,13 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
 
         public AdvertisementModelBuilder<TAdvertisement> WithFieldOfStudy(int?[] fieldOfStudy)
         {
-            this._fieldOfStudy = fieldOfStudy; //.ToArray();
+            this._fieldOfStudy = fieldOfStudy; 
             return this;
         }
 
         public AdvertisementModelBuilder<TAdvertisement> WithSkill(string[] skill)
         {
-            this._skill = skill; //.ToArray();
+            this._skill = skill; 
             return this;
         }
 
@@ -306,8 +258,8 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 },
                 Location = new Models.JobStreet.LocationModel
                 {
-                    id = this._locationId,
-                    area = this._locationArea
+                    Id = this._locationId,
+                    Area = this._locationArea
                 },
                 JobDescription = this._jobDescription,
                 JobSpecialization = this._jobSpecialization,
@@ -319,7 +271,6 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 PostingDate = this._postingDate,
                 StandOutBullet = this._standOutBullet?.ToArray(),
                 CreationId = this._creationId,
-                Action = this._action,
                 ApplicationFormUrl = this._applicationFormUrl,
                 ApplicationEmail = this._applicationEmail,
                 CompanyOverview = this._companyOverview,

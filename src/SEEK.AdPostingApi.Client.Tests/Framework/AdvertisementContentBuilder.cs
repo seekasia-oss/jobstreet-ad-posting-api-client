@@ -151,7 +151,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             }
             else
             {
-                this.AdvertisementModel.educationLevel = educationLevel; //?.Clone();
+                this.AdvertisementModel.educationLevel = educationLevel;
             }
             return this;
         }
@@ -190,7 +190,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             }
             else
             {
-                this.AdvertisementModel.site = site; //?.Clone();
+                this.AdvertisementModel.site = site;
             }
             return this;
         }
@@ -210,12 +210,6 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
         public AdvertisementContentBuilder WithRequestCreationId(object creationId)
         {
             this.AdvertisementModel.creationId = creationId;
-            return this;
-        }
-
-        public AdvertisementContentBuilder WithAction(object action)
-        {
-            this.AdvertisementModel.action = action;
             return this;
         }
 
@@ -251,14 +245,14 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             }
             else
             {
-                this.AdvertisementModel.fieldOfStudy = fieldOfStudy; //?.Clone();
+                this.AdvertisementModel.fieldOfStudy = fieldOfStudy;
             }
             return this;
         }
 
         public AdvertisementContentBuilder WithSkill(object skill)
         {
-            this.AdvertisementModel.skill = skill; //?.Clone();
+            this.AdvertisementModel.skill = skill;
             return this;
         }
 
@@ -276,7 +270,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             }
             else
             {
-                this.AdvertisementModel.language = language; //?.Clone();
+                this.AdvertisementModel.language = language;
             }
             return this;
         }
