@@ -21,9 +21,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 .WithTemplateId(GetDefaultTemplateId())
                 .WithSkill(GetDefaultSkill())
                 .WithApplicationEmail(GetDefaultApplicationEmail())
-                .WithBlindAd(GetDefaultBlindAd())
                 .WithRequestCreationId(GetDefaultCreationId())
-                .WithPostingDate(GetDefaultPostingDate())
                 .WithLanguage(GetDefaultLanguage())
                 .WithApplicationFormUrl(GetDefaultApplicationFormUrl())
                 .WithStandOutBullet(GetDefaultStandoutBullet())
@@ -41,9 +39,7 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 .WithTemplateId(GetDefaultTemplateId())
                 .WithSkill(GetDefaultSkill())
                 .WithApplicationEmail(GetDefaultApplicationEmail())
-                .WithBlindAd(GetDefaultBlindAd())
                 .WithRequestCreationId(GetDefaultCreationId())
-                .WithPostingDate(GetDefaultPostingDate())
                 .WithLanguage(GetDefaultLanguage())
                 .WithApplicationFormUrl(GetDefaultApplicationFormUrl())
                 .WithStandOutBullet(GetDefaultStandoutBullet())
@@ -72,19 +68,9 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
             return "http://seekasia.com/";
         }
 
-        private bool GetDefaultBlindAd()
-        {
-            return false;
-        }
-
         private string GetDefaultCreationId()
         {
             return "20150914";
-        }
-
-        private DateTime GetDefaultPostingDate()
-        {
-            return new DateTime(2017, 9, 30);
         }
 
         private int?[] GetDefaultLanguage()

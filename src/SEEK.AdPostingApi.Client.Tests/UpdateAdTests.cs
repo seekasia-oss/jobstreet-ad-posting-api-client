@@ -287,8 +287,8 @@ namespace SEEK.AdPostingApi.Client.Tests
                         { "User-Agent", AdPostingApiFixture.UserAgentHeaderValue }
                     },
                     Body = new AdvertisementContentBuilder(this.MinimumFieldsInitializer)
-                        .WithSalaryMinimum(2.0)
-                        .WithSalaryMaximum(1.0)
+                        .WithSalaryMinimum((decimal)4000.0)
+                        .WithSalaryMaximum((decimal)3000.0)
                         .Build()
                 })
                 .WillRespondWith(
@@ -314,8 +314,8 @@ namespace SEEK.AdPostingApi.Client.Tests
                 actualException = await Assert.ThrowsAsync<ValidationException>(
                     async () => await client.UpdateAdvertisementAsync(new Uri(this.Fixture.AdPostingApiServiceBaseUri, link),
                         new AdvertisementModelBuilder(this.MinimumFieldsInitializer)
-                            .WithSalaryMinimum(2)
-                            .WithSalaryMaximum(1)
+                            .WithSalaryMinimum((decimal)4000.0)
+                            .WithSalaryMaximum((decimal)3000.0)
                             .Build()));
             }
 

@@ -22,8 +22,7 @@ namespace SEEK.AdPostingApi.Client
         {
             _id = id;
             _secret = secret;
-            //_tokenUri = new Uri("https://api.seek.com.au/auth/oauth2/token");
-            _tokenUri = new Uri("http://seekasiaidentityserver-test.ap-southeast-1.elasticbeanstalk.com/connect/token");
+            _tokenUri = new Uri("https://auth.seekasia.com/connect/token");
             _httpClient = new HttpClient();
         }
 
