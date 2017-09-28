@@ -13,9 +13,9 @@ let outputDir = "../out"
 let pactDir = "../pact"
 let srcDir = "../src"
 let pactVersion = generatePactVersionNumber
-let solutionDir = srcDir + "/SEEK.AdPostingApi.Client.sln"
-let testDir = srcDir + "/SEEK.AdPostingApi.Client.Tests"
-let clientDir = srcDir + "/SEEK.AdPostingApi.Client"
+let solutionDir = srcDir + "/JobStreet.AdPostingApi.Client.sln"
+let testDir = srcDir + "/JobStreet.AdPostingApi.Client.Tests"
+let clientDir = srcDir + "/JobStreet.AdPostingApi.Client"
 let assemblyInfoFile = clientDir + "/Properties/AssemblyInfo.cs"
 let packagingRoot = outputDir + "/artifacts"
 
@@ -60,9 +60,9 @@ Target "NuGet" (fun _ ->
             OutputPath = packagingRoot
             WorkingDir = clientDir
             Version = nugetVersion
-            Files = [ (@"bin/Release/SEEK.AdPostingApi.Client.dll", Some "lib/net452", None) ]
+            Files = [ (@"bin/Release/JobStreet.AdPostingApi.Client.dll", Some "lib/net452", None) ]
             Publish = false }) 
-            (srcDir + "/SEEK.AdPostingApi.Client/SEEK.AdPostingApi.Client.nuspec")
+            (srcDir + "/JobStreet.AdPostingApi.Client/JobStreet.AdPostingApi.Client.nuspec")
 
     trace (sprintf "##teamcity[buildNumber '%s']" nugetVersion)
 )
