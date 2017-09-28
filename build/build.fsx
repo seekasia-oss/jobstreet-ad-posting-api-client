@@ -88,7 +88,7 @@ Target "UploadPact" (fun _ ->
    ==> "Build"
    ==> "Test"
 
-"Build"
+"Test"
    ==> "PactMarkdown"
    ==> "UploadPact"
 
