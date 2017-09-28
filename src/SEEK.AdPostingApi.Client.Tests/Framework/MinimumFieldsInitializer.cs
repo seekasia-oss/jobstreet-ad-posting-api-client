@@ -24,8 +24,8 @@ namespace SEEK.AdPostingApi.Client.Tests.Framework
                 .WithPositionLevel(GetDefaultPositionLevel())
                 .WithYearOfExperience(GetDefaultYearOfExperience())
                 .WithSite(GetDefaultSite())
-                .WithBlindAd(GetDefaultBlindAd()) //optional
-                .WithPostingDate(GetDefaultPostingDate()); //optional          
+                .WithBlindAd(GetDefaultBlindAd()) 
+                .WithPostingDate(GetDefaultPostingDate());           
         }
 
         public void Initialize<TAdvertisement>(AdvertisementModelBuilder<TAdvertisement> builder)

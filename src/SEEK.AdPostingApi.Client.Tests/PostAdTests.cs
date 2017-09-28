@@ -279,8 +279,8 @@ namespace SEEK.AdPostingApi.Client.Tests
                         },
                         Body = new AdvertisementContentBuilder(this.MinimumFieldsInitializer)
                             .WithRequestCreationId(CreationIdForAdWithMinimumRequiredData)
-                            .WithSalaryMinimum(2.0)
-                            .WithSalaryMaximum(1.0)
+                            .WithSalaryMinimum((decimal)4000.0)
+                            .WithSalaryMaximum((decimal)3000.0)
                             .Build()
                     }
                 )
@@ -311,8 +311,8 @@ namespace SEEK.AdPostingApi.Client.Tests
                     async () =>
                         await client.CreateAdvertisementAsync(new AdvertisementModelBuilder(this.MinimumFieldsInitializer)
                             .WithRequestCreationId(CreationIdForAdWithMinimumRequiredData)
-                            .WithSalaryMinimum(2)
-                            .WithSalaryMaximum(1)
+                            .WithSalaryMinimum((decimal)4000.0)
+                            .WithSalaryMaximum((decimal)3000.0)
                             .Build()));
             }
 

@@ -32,7 +32,7 @@ namespace SEEK.AdPostingApi.Client.Tests
 
         [Theory]
         [MemberData(nameof(GetExistingAdvertisementTheoryData))]
-        public async Task GetExistingAdvertisementUsingHalSelfLink(LocationType locationType, string givenStatement)
+        public async Task GetExistingAdvertisementUsingHalSelfLink(string givenStatement)
         {
             const string advertisementId = "8e2fde50-bc5f-4a12-9cfb-812e50500184";
 
@@ -56,7 +56,7 @@ namespace SEEK.AdPostingApi.Client.Tests
 
         [Theory]
         [MemberData(nameof(GetExistingAdvertisementTheoryData))]
-        public async Task GetExistingAdvertisementUsingHalTemplateWithAdvertisementId(LocationType locationType, string givenStatement)
+        public async Task GetExistingAdvertisementUsingHalTemplateWithAdvertisementId(string givenStatement)
         {
             const string advertisementId = "8e2fde50-bc5f-4a12-9cfb-812e50500184";
 
@@ -82,8 +82,9 @@ namespace SEEK.AdPostingApi.Client.Tests
 
         public static IEnumerable<object[]> GetExistingAdvertisementTheoryData => new[]
         {
-            new object[] {LocationType.UseGranularLocation, "There is a standout advertisement with granular location data"},
-            new object[] {LocationType.UseLocation, "There is a standout advertisement with maximum data"}
+            //new object[] {LocationType.UseGranularLocation, "There is a standout advertisement with granular location data"},
+            //new object[] {LocationType.UseLocation, "There is a standout advertisement with maximum data"}
+            new object[] {"There is a standout advertisement with maximum data"}
         };
 
         private void SetupPactForGettingExistingAdvertisement(string givenStatement, string link, OAuth2Token oAuth2Token, AllFieldsInitializer builderInitializer,

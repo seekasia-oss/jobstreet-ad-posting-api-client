@@ -15,7 +15,7 @@ namespace SEEK.AdPostingApi.SampleConsumer
     public class Program
     {
         private static string CreationId = "Sample Consumer " + Guid.NewGuid();
-        private const string AdvertiserId = "1001000001";
+        private const string AdvertiserId = "10110000001";
         private const int BaseRetryIntervalSeconds = 2;
         private const string ClientId = "client1"; //"ClientId"; //"client1";
         private const string ClientSecret = "secret"; //"ClientSecret"; //"secret";
