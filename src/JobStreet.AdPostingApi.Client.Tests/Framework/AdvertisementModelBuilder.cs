@@ -49,16 +49,6 @@ namespace JobStreet.AdPostingApi.Client.Tests.Framework
         private int? _templateId;
         #endregion JOBSTREET CODE END
 
-        #region JOBSDB CODE START 
-        /*private int _jobIndustry;
-        private int _nationality;
-        private string _companyName;
-        private bool _workAuthorization;
-        private bool _wantFreshGrad;
-        private int _localResidentOnly;
-        private int[] _benefits;*/
-        #endregion JOBSDB CODE END
-
         protected AdvertisementModelBuilder(IBuilderInitializer initializer = null)
         {
             initializer?.Initialize(this);

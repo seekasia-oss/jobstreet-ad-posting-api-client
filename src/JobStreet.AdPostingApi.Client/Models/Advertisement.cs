@@ -61,23 +61,5 @@ namespace JobStreet.AdPostingApi.Client.Models
         public int? TemplateId { get; set; }
 
         #endregion JOBSTREET CODE END
-
-        #region JOBSDB CODE START 
-
-        /*public int JobIndustry { get; set; }
-
-        public int Nationality { get; set; }
-
-        public string CompanyName { get; set; }
-
-        public bool WorkAuthorization { get; set; }
-
-        public bool WantFreshGrad { get; set; }
-
-        public int LocalResidentOnly { get; set; }
-
-        public int[] Benefits { get; set; }*/
-
-        #endregion JOBSDB CODE END
     }
 }

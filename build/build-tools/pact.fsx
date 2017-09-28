@@ -11,7 +11,7 @@ open System.Web
 open System.Net
 open System.IO
 
-let pactBroker = "http://pact.seek.int:9292"
+let pactBroker = "http://10.100.144.179"
 
 [<DataContract>]
 type Provider = {

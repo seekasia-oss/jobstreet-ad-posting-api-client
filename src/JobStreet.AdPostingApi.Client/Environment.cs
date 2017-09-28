@@ -5,7 +5,7 @@
         [EnvironmentUrl("https://adposting-integration.jobstreet.com")]
         Integration,
 
-        [EnvironmentUrl("https://adposting.cloud.seek.com.au")]
+        [EnvironmentUrl("https://adposting.jobstreet.com")]
         Production
     }
 }
