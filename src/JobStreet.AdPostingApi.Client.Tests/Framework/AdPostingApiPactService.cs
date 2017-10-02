@@ -9,7 +9,7 @@ namespace JobStreet.AdPostingApi.Client.Tests.Framework
         public AdPostingApiPactService()
         {
             this.PactBuilder = new PactBuilder(new PactConfig { PactDir = @"..\..\..\..\pact", LogDir = @"..\..\logs" })
-                .ServiceConsumer("Ad Posting API Client")
+                .ServiceConsumer("Jobstreet Ad Posting API Client")
                 .HasPactWith("Ad Posting API");
 
             this.MockProviderService = this.PactBuilder.MockService(this.MockServerPort);
