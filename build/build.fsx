@@ -92,7 +92,7 @@ Target "UploadPact" (fun _ ->
    ==> "PactMarkdown"
    ==> "UploadPact"
 
-"Build"
+"Test"
    ==> "NuGet"
 
 RunTargetOrDefault "NuGet"
